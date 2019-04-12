@@ -1,6 +1,8 @@
 package com.ezzat.doctoruim.Model;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
 
     private String name, password, phone, image_url, address;
     private Rate rate;

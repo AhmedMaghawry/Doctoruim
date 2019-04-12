@@ -11,4 +11,5 @@ public interface Constants {
     String VERF_SP = "verID";
     String TOKEN_SP = "token";
     String CODE_SP = "code";
+    String ARG_REQS = "requests";
 }

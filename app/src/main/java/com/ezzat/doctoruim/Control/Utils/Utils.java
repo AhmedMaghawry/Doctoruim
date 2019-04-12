@@ -47,7 +47,8 @@ public class Utils {
 
     public static void launchActivity(Context context, Class classToGo, Bundle bundle) {
         Intent intent = new Intent(context, classToGo);
-        intent.putExtra("send", bundle);
+        if (bundle != null)
+            intent.putExtras(bundle);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }

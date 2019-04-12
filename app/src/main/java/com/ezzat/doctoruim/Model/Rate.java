@@ -1,6 +1,8 @@
 package com.ezzat.doctoruim.Model;
 
-public class Rate {
+import java.io.Serializable;
+
+public class Rate implements Serializable {
 
     private float rate;
     private int total;

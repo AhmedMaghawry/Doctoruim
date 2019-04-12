@@ -12,24 +12,37 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ezzat.doctoruim.Control.PagerAdapter;
+import com.ezzat.doctoruim.Control.Utils.Utils;
+import com.ezzat.doctoruim.Model.User;
 import com.ezzat.doctoruim.R;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.ezzat.doctoruim.Control.Utils.Constants.ARG_REQS;
 
 public class HomeActivity extends AppCompatActivity {
 
     private TextView countRequests;
     private FrameLayout requests;
     private ImageView messages, logout;
-    private int count = 2;
+    private ArrayList<User> doctorsReq = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        User mar = new User("Marwan Morsy", "AASDASD", "0154589960");
+        mar.setImage_url("mar");
+        mar.setAddress("Eyes");
+        doctorsReq.add(mar);
+        doctorsReq.add(mar);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        TabLayout tabLayout = findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("Doctors"));
         tabLayout.addTab(tabLayout.newTab().setText("Patients"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
@@ -75,10 +88,12 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        final Bundle args = new Bundle();
+        args.putSerializable(ARG_REQS, doctorsReq);
         requests.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: Open requests
+                Utils.launchActivity(HomeActivity.this, RequestsActivity.class, args);
             }
         });
 
@@ -88,12 +103,12 @@ public class HomeActivity extends AppCompatActivity {
     private void setupBadge() {
 
         if (countRequests != null) {
-            if (count == 0) {
+            if (doctorsReq.size() == 0) {
                 if (countRequests.getVisibility() != View.GONE) {
                     countRequests.setVisibility(View.GONE);
                 }
             } else {
-                countRequests.setText(String.valueOf(Math.min(count, 99)));
+                countRequests.setText(String.valueOf(Math.min(doctorsReq.size(), 99)));
                 if (countRequests.getVisibility() != View.VISIBLE) {
                     countRequests.setVisibility(View.VISIBLE);
                 }
