@@ -1,0 +1,24 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="title">
+
+    </style>
+
+    <style name="subtitle">
+
+    </style>
+
+    <style name="button">
+
+    </style>
+
+    <style name="text_field">
+
+    </style>
+
+</resources>

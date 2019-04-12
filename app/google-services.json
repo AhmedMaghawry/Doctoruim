@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "275741178053",
+    "firebase_url": "https://doctoruim.firebaseio.com",
+    "project_id": "doctoruim",
+    "storage_bucket": "doctoruim.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:275741178053:android:d067f0cf7618bc6b",
+        "android_client_info": {
+          "package_name": "com.ezzat.doctoruim"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "275741178053-v8ul6l1nuikunmdum4rp3mbo1ohnslec.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ezzat.doctoruim",
+            "certificate_hash": "8303624d1fe8bea84164b5beab9f8a31cde3258d"
+          }
+        },
+        {
+          "client_id": "275741178053-4n2conc8nvdf0rdkg22n5fmojhnj32ko.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzGvR7kIDBKcWdY0y6XO8ZyVlP59ut0nA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "275741178053-4n2conc8nvdf0rdkg22n5fmojhnj32ko.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

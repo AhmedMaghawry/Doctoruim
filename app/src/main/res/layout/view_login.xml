@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/login"
+        android:gravity="center"
+        android:textSize="40sp"
+        android:fontFamily="sans-serif-thin"
+        android:textColor="@color/gray"
+        android:layout_marginBottom="20dp"/>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:textColorHint="@color/gray_white"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/phone"
+            android:imeActionId="6"
+            android:textColor="@color/gray"
+            android:imeActionLabel="@string/phone"
+            android:imeOptions="actionUnspecified"
+            android:inputType="phone"
+            android:maxLines="1"
+            android:textColorHighlight="@color/gray"
+            android:textColorHint="@color/gray"
+            android:drawablePadding="10dp"
+            android:drawableLeft="@drawable/phone"
+            android:singleLine="true" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/gray_white"
+        android:layout_marginTop="10dp">
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password"
+            android:imeActionId="6"
+            android:textColorHint="@color/gray"
+            android:textColor="@color/gray"
+            android:textColorHighlight="@color/gray"
+            android:imeActionLabel="@string/password"
+            android:imeOptions="actionUnspecified"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:drawablePadding="10dp"
+            android:drawableLeft="@drawable/pass"
+            android:singleLine="true" />
+
+    </android.support.design.widget.TextInputLayout>
+
+
+</LinearLayout>
