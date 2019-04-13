@@ -2,19 +2,31 @@ package com.ezzat.doctoruim.Model;
 
 import java.io.Serializable;
 
-public class Message implements Serializable{
+public class Message implements Serializable {
 
-    private User owner, reported;
-    private MessageStatus status;
-    private String content;
+    private User owner;
+    private String message;
+    private String id;
+    private  String reportedUserId;
+    public Message(){
 
-    public Message(){}
+    }
 
-    public Message(User owner, User reported, String content) {
+
+
+    public Message(User owner, String message, String reportedUserId) {
         this.owner = owner;
-        this.reported = reported;
-        this.status = MessageStatus.UNREAD;
-        this.content = content;
+        this.message = message;
+        this.id = "";
+        this.reportedUserId=reportedUserId;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public User getOwner() {
@@ -25,27 +37,19 @@ public class Message implements Serializable{
         this.owner = owner;
     }
 
-    public User getReported() {
-        return reported;
+    public String getMessage() {
+        return message;
     }
 
-    public void setReported(User reported) {
-        this.reported = reported;
+    public void setMessage(String message) {
+        this.message = message;
+    }
+    public String getReportedUserId() {
+        return reportedUserId;
     }
 
-    public MessageStatus getStatus() {
-        return status;
+    public void setReportedUserId(String reportedUserId) {
+        this.reportedUserId = reportedUserId;
     }
 
-    public void setStatus(MessageStatus status) {
-        this.status = status;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
 }
