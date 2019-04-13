@@ -14,8 +14,12 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.ezzat.doctoruim.Model.User;
 import com.ezzat.doctoruim.R;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -95,6 +99,20 @@ public class ListPatientAdapter extends RecyclerView.Adapter<ListPatientAdapter.
         int drawableResourceId = context.getResources().getIdentifier(imageName, "drawable", context.getPackageName());
 
         return drawableResourceId;
+    }
+
+    public void updateAndDeleteUser(User user, boolean delete) {
+        // Create new post at /user-posts/$userid/$postid and at
+        // /posts/$postid simultaneously
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("Users");
+        Map<String, Object> childUpdates = new HashMap<>();
+        if(delete){
+            childUpdates.put("/Users/" + user.getPhone(), null);
+        }else{
+            Map<String, Object> userValues = user.toMap();
+            childUpdates.put("/Users/" + user.getPhone(), userValues);
+        }
+        mDatabase.updateChildren(childUpdates);
     }
 
 }

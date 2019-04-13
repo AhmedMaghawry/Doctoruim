@@ -1,6 +1,8 @@
 package com.ezzat.doctoruim.Model;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 public class User implements Serializable {
 
@@ -85,4 +87,17 @@ public class User implements Serializable {
         this.id = id;
     }
 
+    public Map<String, Object> toMap() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("name", this.name);
+        map.put("password", this.password);
+        map.put("phone", this.phone);
+        map.put("verified", this.verified);
+        map.put("imageUrl", this.image_url);
+        map.put("address", this.address);
+        map.put("id", this.id);
+        map.put("rate", this.rate);
+        //TODO:: type remaining.
+        return map;
+    }
 }
