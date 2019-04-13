@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.ezzat.doctoruim.Control.ListDoctorAdapter;
 import com.ezzat.doctoruim.Control.ListDoctorRequestAdapter;
+import com.ezzat.doctoruim.Model.Request;
 import com.ezzat.doctoruim.Model.User;
 import com.ezzat.doctoruim.R;
 
@@ -26,7 +27,7 @@ public class RequestsActivity extends AppCompatActivity {
         LinearLayoutManager llm = new LinearLayoutManager(RequestsActivity.this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         listView.setLayoutManager(llm);
-        ArrayList<User> doctors = (ArrayList<User>) getIntent().getExtras().getSerializable(ARG_REQS);
-        listView.setAdapter(new ListDoctorRequestAdapter(doctors, this));
+        ArrayList<Request> requests = (ArrayList<Request>) getIntent().getExtras().getSerializable(ARG_REQS);
+        listView.setAdapter(new ListDoctorRequestAdapter(requests, this));
     }
 }

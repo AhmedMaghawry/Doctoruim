@@ -33,8 +33,11 @@
         <activity
             android:name=".View.HomeActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity android:name=".View.RequestsActivity"
-            android:parentActivityName=".View.HomeActivity"/>
+        <activity
+            android:name=".View.RequestsActivity"
+            android:parentActivityName=".View.HomeActivity" />
+        <activity android:name=".View.RequestActivity"
+            android:parentActivityName=".View.RequestsActivity"/>
     </application>
 
 </manifest>

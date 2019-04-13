@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.ezzat.doctoruim.Control.PagerAdapter;
 import com.ezzat.doctoruim.Control.Utils.Utils;
+import com.ezzat.doctoruim.Model.Request;
 import com.ezzat.doctoruim.Model.User;
 import com.ezzat.doctoruim.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,7 +28,7 @@ public class HomeActivity extends AppCompatActivity {
     private TextView countRequests;
     private FrameLayout requests;
     private ImageView messages, logout;
-    private ArrayList<User> doctorsReq = new ArrayList<>();
+    private ArrayList<Request> doctorsReq = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +37,10 @@ public class HomeActivity extends AppCompatActivity {
         User mar = new User("Marwan Morsy", "AASDASD", "0154589960");
         mar.setImage_url("mar");
         mar.setAddress("Eyes");
-        doctorsReq.add(mar);
-        doctorsReq.add(mar);
+        Request r1 = new Request(mar, "Wal3a", "card");
+        Request r2 = new Request(mar, "Nfsy 2b2a zyk", "cardf");
+        doctorsReq.add(r1);
+        doctorsReq.add(r2);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -78,6 +81,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
+                Utils.launchActivity(HomeActivity.this, MainActivity.class, null);
             }
         });
 

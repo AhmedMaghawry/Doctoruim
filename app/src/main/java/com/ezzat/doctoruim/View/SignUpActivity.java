@@ -13,9 +13,12 @@ import com.ezzat.doctoruim.Control.UserCreator;
 import com.ezzat.doctoruim.Control.Utils.SharedValues;
 import com.ezzat.doctoruim.Control.Utils.Utils;
 import com.ezzat.doctoruim.Control.onEvent;
+import com.ezzat.doctoruim.Model.User;
 import com.google.android.gms.common.SignInButton;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.pepperonas.materialdialog.*;
 import com.pepperonas.materialdialog.model.LicenseInfo;
 
@@ -126,7 +129,7 @@ public class SignUpActivity extends Activity {
         }
     }
 
-    private void startRegProcess(final String name, String password, String phone) {
+    private void startRegProcess(final String name, final String password, final String phone) {
         UserCreator mAuthTask = new UserCreator(new onEvent() {
             @Override
             public void onStart(Object object) {
@@ -145,13 +148,13 @@ public class SignUpActivity extends Activity {
 
                 Toast.makeText(SignUpActivity.this, "The Code Comp : " + res, Toast.LENGTH_SHORT).show();
 
-                showCodeEnter(res);
+                showCodeEnter(res, name, password, phone);
             }
         }, this);
         mAuthTask.execute(name, password, phone);
     }
 
-    private void showCodeEnter(final String codeNum) {
+    private void showCodeEnter(final String codeNum, final String name, final String password, final String phone) {
         new MaterialDialog.Builder(this)
                 .customView(R.layout.view_code)
                 .positiveText("Confirm")
@@ -171,6 +174,11 @@ public class SignUpActivity extends Activity {
 
                             //signing the user
                             signInWithPhoneAuthCredential(SignUpActivity.this, credential);
+                            Boolean b = addUser(name, "Admin", phone, password);
+                            if (b)
+                                Toast.makeText(SignUpActivity.this, "User Added Successfully", Toast.LENGTH_SHORT).show();
+                            else
+                                Toast.makeText(SignUpActivity.this, "User Add Failed", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }).show();
@@ -227,11 +235,6 @@ public class SignUpActivity extends Activity {
         return licenseInfos;
     }
 
-    private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
-        return email.contains("@");
-    }
-
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
         return password.length() > 6;
@@ -242,5 +245,17 @@ public class SignUpActivity extends Activity {
         super.onDestroy();
         Utils.hideDialog();
     }
+
+    public boolean addUser(String name, String type, String phone, String password) {
+        try {
+            DatabaseReference base = FirebaseDatabase.getInstance().getReference("Users");
+            User user = new User(name, password, phone);
+            base.child(phone).setValue(user);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
+
 }
 

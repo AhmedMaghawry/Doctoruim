@@ -27,6 +27,8 @@ import java.util.concurrent.TimeUnit;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
+import static com.ezzat.doctoruim.Control.Utils.Constants.CODE_SP;
+
 public class Utils {
 
     public final static String TAG = "Utils";
@@ -105,7 +107,7 @@ public class Utils {
                 callbacl);        // OnVerificationStateChangedCallbacks
     }
 
-    public static void signInWithPhoneAuthCredential(final Activity context, PhoneAuthCredential credential) {
+    public static void signInWithPhoneAuthCredential(final Activity context, final PhoneAuthCredential credential) {
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
@@ -118,7 +120,9 @@ public class Utils {
                             Log.d("mob", "signInWithCredential:success");
                             Toast.makeText(context, "Login Successful", Toast.LENGTH_SHORT).show();
 
-                            FirebaseUser user = task.getResult().getUser();
+                            //FirebaseUser user = task.getResult().getUser();
+
+                            SharedValues.saveValue(context, CODE_SP, credential.getSmsCode());
 
                             Utils.launchActivity(context, HomeActivity.class, null);
                             // ...
@@ -134,4 +138,5 @@ public class Utils {
                     }
                 });
     }
+
 }

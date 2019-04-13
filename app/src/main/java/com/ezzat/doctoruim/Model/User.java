@@ -4,18 +4,21 @@ import java.io.Serializable;
 
 public class User implements Serializable {
 
-    private String name, password, phone, image_url, address;
+    private String name, password, phone, image_url, address, id;
     private Rate rate;
     private Boolean verified;
+
+    public User(){}
 
     public User(String name, String password, String phone) {
         this.name = name;
         this.password = password;
         this.phone = phone;
-        this.image_url = "";
-        address = "";
+        this.image_url = "mar";
+        address = "Eye";
         rate = new Rate();
         verified = false;
+        id = "";
     }
 
     public String getName() {
@@ -73,4 +76,13 @@ public class User implements Serializable {
     public void setVerified(Boolean verified) {
         this.verified = verified;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
 }

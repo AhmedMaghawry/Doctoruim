@@ -3,15 +3,21 @@ package com.ezzat.doctoruim.View
 import android.app.Activity
 import android.os.Bundle
 import android.support.v4.view.ViewPager
+import android.text.TextUtils
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import com.afollestad.materialdialogs.MaterialDialog
 import com.ezzat.doctoruim.Control.CustomPagerAdapter
 import com.ezzat.doctoruim.Control.UserLoginTask
+import com.ezzat.doctoruim.Control.Utils.Constants.VERF_SP
+import com.ezzat.doctoruim.Control.Utils.SharedValues
 import com.ezzat.doctoruim.Control.Utils.Utils
+import com.ezzat.doctoruim.Control.Utils.Utils.signInWithPhoneAuthCredential
 import com.ezzat.doctoruim.Control.onEvent
 import com.ezzat.doctoruim.R
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.PhoneAuthProvider
 import me.relex.circleindicator.CircleIndicator
 
 
@@ -44,14 +50,10 @@ class MainActivity : Activity() {
                         override fun onProgress(`object`: Any?) {}
 
                         override fun onEnd(`object`: Any?) {
-                            val isSucc : Boolean = `object` as Boolean
-
                             Utils.hideDialog()
+                            val res = `object` as String?
 
-                            if(isSucc)
-                                Utils.launchActivity(applicationContext, HomeActivity::class.java, null)
-                            else
-                                Utils.showError(self, "Login Failed", "Login Failed please try again")
+                            showCodeEnter(res)
                         }
 
                     }
@@ -70,7 +72,7 @@ class MainActivity : Activity() {
 
                     if (good) {
                         var loginTask = UserLoginTask(self, event)
-                        loginTask.execute(email.toString(), password.toString())
+                        loginTask.execute(email.text.toString(), password.text.toString())
                     }
                 }
 
@@ -94,5 +96,29 @@ class MainActivity : Activity() {
     override fun onDestroy() {
         super.onDestroy()
         Utils.hideDialog()
+    }
+
+    private fun showCodeEnter(codeNum: String?) {
+        com.pepperonas.materialdialog.MaterialDialog.Builder(this)
+                .customView(R.layout.view_code)
+                .positiveText("Confirm")
+                .negativeText("Cancel")
+                .buttonCallback(object : com.pepperonas.materialdialog.MaterialDialog.ButtonCallback() {
+                    override fun onPositive(dialog: com.pepperonas.materialdialog.MaterialDialog?) {
+                        val code = dialog!!.findViewById<EditText>(R.id.code)
+                        if (codeNum != null)
+                            code.setText(codeNum)
+                        if (TextUtils.isEmpty(code.text.toString())) {
+                            Utils.showError(application, "Invalid Code", "The Code Entered is invalid")
+                            Utils.hideDialog()
+                        } else {
+                            Toast.makeText(application, "Login Succ", Toast.LENGTH_SHORT).show()
+                            val credential = PhoneAuthProvider.getCredential(SharedValues.getValueS(applicationContext, VERF_SP), code.text.toString())
+
+                            //signing the user
+                            signInWithPhoneAuthCredential(self, credential)
+                        }
+                    }
+                }).show()
     }
 }

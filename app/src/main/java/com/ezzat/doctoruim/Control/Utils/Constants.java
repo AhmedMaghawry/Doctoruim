@@ -12,4 +12,5 @@ public interface Constants {
     String TOKEN_SP = "token";
     String CODE_SP = "code";
     String ARG_REQS = "requests";
+    String ARG_REQ = "request";
 }
