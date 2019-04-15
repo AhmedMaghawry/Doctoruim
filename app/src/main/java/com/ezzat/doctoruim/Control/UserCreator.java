@@ -28,13 +28,11 @@ import static com.ezzat.doctoruim.Control.Utils.Utils.signInWithPhoneAuthCredent
 public class UserCreator extends AsyncTask<String, Void, Void> {
 
     private onEvent callback;
-    private Activity context;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
-    private String first, password, mobile;
+    private String mobile;
 
     public UserCreator(final onEvent callback, final Activity context) {
         this.callback = callback;
-        this.context = context;
         mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
             @Override
@@ -50,10 +48,10 @@ public class UserCreator extends AsyncTask<String, Void, Void> {
                 //sometime the code is not detected automatically
                 //in this case the code will be null
                 //so user has to manually enter the code
-                if (code != null) {
-                    callback.onEnd(code);
-                    Utils.hideDialog();
-                }
+//                if (code != null) {
+//                    callback.onEnd(code);
+//                    Utils.hideDialog();
+//                }
             }
 
             @Override
@@ -100,8 +98,6 @@ public class UserCreator extends AsyncTask<String, Void, Void> {
 
     @Override
     protected Void doInBackground(String... strings) {
-        first = strings[0];
-        password = strings[1];
         mobile = strings[2];
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();

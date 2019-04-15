@@ -17,22 +17,6 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="title">
-
-    </style>
-
-    <style name="subtitle">
-
-    </style>
-
-    <style name="button">
-
-    </style>
-
-    <style name="text_field">
-
-    </style>
-
     <style name="text_title">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>

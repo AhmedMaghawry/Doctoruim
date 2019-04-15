@@ -53,10 +53,10 @@ public class UserLoginTask extends AsyncTask<String, Void, Boolean> {
                 //sometime the code is not detected automatically
                 //in this case the code will be null
                 //so user has to manually enter the code
-                if (code != null) {
-                    event.onEnd(code);
-                    Utils.hideDialog();
-                }
+//                if (code != null) {
+//                    event.onEnd(code);
+//                    Utils.hideDialog();
+//                }
             }
 
             @Override
