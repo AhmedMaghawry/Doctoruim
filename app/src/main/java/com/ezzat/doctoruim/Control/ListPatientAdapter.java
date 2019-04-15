@@ -23,6 +23,8 @@ import java.util.Map;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
+import static com.ezzat.doctoruim.Control.Utils.Constants.PLACEHOLDER_IMG;
+
 public class ListPatientAdapter extends RecyclerView.Adapter<ListPatientAdapter.UserHolder> {
 
     private List<User> users;
@@ -37,7 +39,7 @@ public class ListPatientAdapter extends RecyclerView.Adapter<ListPatientAdapter.
     public void onBindViewHolder(@NonNull UserHolder holder, final int position) {
         holder.name.setText(users.get(position).getName());
         holder.phone.setText(users.get(position).getPhone());
-        Glide.with(context).load(getImage(users.get(position).getImage_url())).into(holder.photo);
+        Glide.with(context).load(users.get(position).getImage()).placeholder(getImage(PLACEHOLDER_IMG)).into(holder.photo);
         holder.all.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
@@ -55,6 +57,7 @@ public class ListPatientAdapter extends RecyclerView.Adapter<ListPatientAdapter.
                 pDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                     @Override
                     public void onClick(SweetAlertDialog sweetAlertDialog) {
+                        users.get(position).deleteUser();
                         users.remove(position);
                         notifyDataSetChanged();
                         pDialog.dismiss();
@@ -99,20 +102,6 @@ public class ListPatientAdapter extends RecyclerView.Adapter<ListPatientAdapter.
         int drawableResourceId = context.getResources().getIdentifier(imageName, "drawable", context.getPackageName());
 
         return drawableResourceId;
-    }
-
-    public void updateAndDeleteUser(User user, boolean delete) {
-        // Create new post at /user-posts/$userid/$postid and at
-        // /posts/$postid simultaneously
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("Users");
-        Map<String, Object> childUpdates = new HashMap<>();
-        if(delete){
-            childUpdates.put("/Users/" + user.getPhone(), null);
-        }else{
-            Map<String, Object> userValues = user.toMap();
-            childUpdates.put("/Users/" + user.getPhone(), userValues);
-        }
-        mDatabase.updateChildren(childUpdates);
     }
 
 }

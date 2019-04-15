@@ -1,53 +1,67 @@
 package com.ezzat.doctoruim.Model;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.ezzat.doctoruim.Control.Utils.Constants.DOCTOR_TABLE;
+import static com.ezzat.doctoruim.Control.Utils.Constants.REQUEST_TABLE;
+import static com.ezzat.doctoruim.Control.Utils.Constants.USER_TABLE;
 
 public class Request implements Serializable {
 
-    private User owner;
-    private String message;
-    private String cardURL, id;
+    private String cover;
+    private String association, phone;
 
     public Request(){
 
     }
 
-    public Request(User owner, String message, String cardURL) {
-        this.owner = owner;
-        this.message = message;
-        this.cardURL = cardURL;
-        this.id = "";
+    public Request(String phone, String cover, String association) {
+        this.cover = cover;
+        this.association = association;
+        this.phone = phone;
     }
 
-    public String getId() {
-        return id;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public User getOwner() {
-        return owner;
+    public String getCover() {
+        return cover;
     }
 
-    public void setOwner(User owner) {
-        this.owner = owner;
+    public void setCover(String cover) {
+        this.cover = cover;
     }
 
-    public String getMessage() {
-        return message;
+    public String getAssociation() {
+        return association;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setAssociation(String association) {
+        this.association = association;
     }
 
-    public String getCardURL() {
-        return cardURL;
+    public Map<String, Object> toMap() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("phone", this.phone);
+        map.put("cover", this.cover);
+        map.put("association", this.association);
+        return map;
     }
 
-    public void setCardURL(String cardURL) {
-        this.cardURL = cardURL;
+    public void deleteRequest () {
+        FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
+        Map<String, Object> childUpdates = new HashMap<>();
+        childUpdates.put("/" + getPhone(), null);
+        mDatabase.getReference(REQUEST_TABLE).updateChildren(childUpdates);
     }
 }

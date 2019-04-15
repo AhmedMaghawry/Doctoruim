@@ -1,7 +1,7 @@
 package com.ezzat.doctoruim.View;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -17,34 +17,27 @@ import com.ezzat.doctoruim.Model.Request;
 import com.ezzat.doctoruim.Model.User;
 import com.ezzat.doctoruim.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import static com.ezzat.doctoruim.Control.Utils.Constants.ARG_REQS;
+import static com.ezzat.doctoruim.Control.Utils.Constants.REQUEST_TABLE;
 
 public class HomeActivity extends AppCompatActivity {
 
     private TextView countRequests;
-    private FrameLayout requests;
     private ImageView messages, logout;
-    private ArrayList<Request> doctorsReq = new ArrayList<>();
+    private FrameLayout request;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        User mar = new User("Marwan Morsy", "AASDASD", "0154589960");
-        mar.setImage_url("mar");
-        mar.setAddress("Eyes");
-        Request r1 = new Request(mar, "Wal3a", "card");
-        Request r2 = new Request(mar, "Nfsy 2b2a zyk", "cardf");
-        doctorsReq.add(r1);
-        doctorsReq.add(r2);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -77,8 +70,8 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         logout = toolbar.findViewById(R.id.logout);
+        request = toolbar.findViewById(R.id.request);
         messages = toolbar.findViewById(R.id.email);
-        requests = toolbar.findViewById(R.id.request);
         countRequests = toolbar.findViewById(R.id.cart_badge);
 
         logout.setOnClickListener(new View.OnClickListener() {
@@ -89,19 +82,17 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        request.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Utils.launchActivity(HomeActivity.this, RequestsActivity.class, null);
+            }
+        });
+
         messages.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODO:OPEN Messages
-            }
-        });
-
-        final Bundle args = new Bundle();
-        args.putSerializable(ARG_REQS, doctorsReq);
-        requests.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Utils.launchActivity(HomeActivity.this, RequestsActivity.class, args);
             }
         });
 
@@ -110,17 +101,29 @@ public class HomeActivity extends AppCompatActivity {
 
     private void setupBadge() {
 
-        if (countRequests != null) {
-            if (doctorsReq.size() == 0) {
-                if (countRequests.getVisibility() != View.GONE) {
-                    countRequests.setVisibility(View.GONE);
-                }
-            } else {
-                countRequests.setText(String.valueOf(Math.min(doctorsReq.size(), 99)));
-                if (countRequests.getVisibility() != View.VISIBLE) {
-                    countRequests.setVisibility(View.VISIBLE);
+        DatabaseReference base = FirebaseDatabase.getInstance().getReference(REQUEST_TABLE);
+        base.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                int size = (int) dataSnapshot.getChildrenCount();
+                if (countRequests != null) {
+                    if (size == 0) {
+                        if (countRequests.getVisibility() != View.GONE) {
+                            countRequests.setVisibility(View.GONE);
+                        }
+                    } else {
+                        countRequests.setText(String.valueOf(Math.min(size, 99)));
+                        if (countRequests.getVisibility() != View.VISIBLE) {
+                            countRequests.setVisibility(View.VISIBLE);
+                        }
+                    }
                 }
             }
-        }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 }

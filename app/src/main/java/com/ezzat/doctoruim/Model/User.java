@@ -1,14 +1,21 @@
 package com.ezzat.doctoruim.Model;
 
+import android.content.Context;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.ezzat.doctoruim.Control.Utils.Constants.DOCTOR_TABLE;
+import static com.ezzat.doctoruim.Control.Utils.Constants.USER_TABLE;
+
 public class User implements Serializable {
 
-    private String name, password, phone, image_url, address, id;
-    private Rate rate;
-    private Boolean verified;
+    private String name, password, phone, image, address;
+    private UserType type;
 
     public User(){}
 
@@ -16,11 +23,9 @@ public class User implements Serializable {
         this.name = name;
         this.password = password;
         this.phone = phone;
-        this.image_url = "mar";
-        address = "Eye";
-        rate = new Rate();
-        verified = false;
-        id = "";
+        image = "";
+        address = "";
+        type = UserType.Patient;
     }
 
     public String getName() {
@@ -29,6 +34,7 @@ public class User implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+        updateUser();
     }
 
     public String getPassword() {
@@ -37,6 +43,7 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+        updateUser();
     }
 
     public String getPhone() {
@@ -45,14 +52,16 @@ public class User implements Serializable {
 
     public void setPhone(String phone) {
         this.phone = phone;
+        updateUser();
     }
 
-    public String getImage_url() {
-        return image_url;
+    public String getImage() {
+        return image;
     }
 
-    public void setImage_url(String image_url) {
-        this.image_url = image_url;
+    public void setImage(String image) {
+        this.image = image;
+        updateUser();
     }
 
     public String getAddress() {
@@ -61,30 +70,16 @@ public class User implements Serializable {
 
     public void setAddress(String address) {
         this.address = address;
+        updateUser();
     }
 
-    public Rate getRate() {
-        return rate;
+    public UserType getType() {
+        return type;
     }
 
-    public void setRate(Rate rate) {
-        this.rate = rate;
-    }
-
-    public Boolean getVerified() {
-        return verified;
-    }
-
-    public void setVerified(Boolean verified) {
-        this.verified = verified;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+    public void setType(UserType type) {
+        this.type = type;
+        updateUser();
     }
 
     public Map<String, Object> toMap() {
@@ -92,12 +87,40 @@ public class User implements Serializable {
         map.put("name", this.name);
         map.put("password", this.password);
         map.put("phone", this.phone);
-        map.put("verified", this.verified);
-        map.put("imageUrl", this.image_url);
+        map.put("image", this.image);
         map.put("address", this.address);
-        map.put("id", this.id);
-        map.put("rate", this.rate);
-        //TODO:: type remaining.
+        map.put("type", this.type);
         return map;
+    }
+
+    public void deleteUser () {
+        FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
+        Map<String, Object> childUpdates = new HashMap<>();
+        childUpdates.put("/" + getPhone(), null);
+        mDatabase.getReference(USER_TABLE).updateChildren(childUpdates);
+        if (getType() == UserType.Doctor) {
+            Map<String, Object> childUpdatesDoc = new HashMap<>();
+            childUpdatesDoc.put("/" + getPhone(), null);
+            mDatabase.getReference(DOCTOR_TABLE).updateChildren(childUpdatesDoc);
+            //TODO : Delete from Auth
+        }
+    }
+
+    private void updateUser() {
+        FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
+        Map<String, Object> childUpdates = new HashMap<>();
+        Map<String, Object> userValues = toMap();
+        childUpdates.put("/" + getPhone(), userValues);
+        mDatabase.getReference(USER_TABLE).updateChildren(childUpdates);
+    }
+
+    public boolean addUser() {
+        try {
+            DatabaseReference base = FirebaseDatabase.getInstance().getReference(USER_TABLE);
+            base.child(phone).setValue(this);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
     }
 }

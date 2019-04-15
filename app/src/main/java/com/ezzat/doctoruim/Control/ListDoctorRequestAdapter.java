@@ -25,36 +25,53 @@ import java.util.List;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import static com.ezzat.doctoruim.Control.Utils.Constants.ARG_REQ;
+import static com.ezzat.doctoruim.Control.Utils.Constants.PLACEHOLDER_IMG;
+import static com.ezzat.doctoruim.Control.Utils.Constants.USER_TABLE;
 
 public class ListDoctorRequestAdapter extends RecyclerView.Adapter<ListDoctorRequestAdapter.UserHolder> {
 
-    private List<Request> users;
+    private List<Request> requests;
     private Context context;
 
-    public ListDoctorRequestAdapter(List<Request> users, Context context) {
-        this.users = users;
+    public ListDoctorRequestAdapter(List<Request> requests, Context context) {
+        this.requests = requests;
         this.context = context;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull UserHolder holder, final int position) {
-        holder.name.setText(users.get(position).getOwner().getName());
-        holder.spec.setText(users.get(position).getOwner().getAddress());
-        holder.phone.setText(users.get(position).getOwner().getPhone());
-        Glide.with(context).load(getImage(users.get(position).getOwner().getImage_url())).into(holder.photo);
-        holder.all.setOnClickListener(new View.OnClickListener() {
+    public void onBindViewHolder(@NonNull final UserHolder holder, final int position) {
+        DatabaseController.getElement(USER_TABLE, requests.get(position).getPhone(), User.class, new onEvent() {
             @Override
-            public void onClick(View v) {
-                Bundle args = new Bundle();
-                args.putSerializable(ARG_REQ, users.get(position));
-                Utils.launchActivity(context.getApplicationContext(), RequestActivity.class, args);
+            public void onStart(Object object) {
+
+            }
+
+            @Override
+            public void onProgress(Object object) {
+
+            }
+
+            @Override
+            public void onEnd(Object object) {
+                User user = (User) object;
+                holder.name.setText(user.getName());
+                holder.phone.setText(user.getPhone());
+                Glide.with(context).load(user.getImage()).placeholder(getImage(PLACEHOLDER_IMG)).into(holder.photo);
+                holder.all.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Bundle args = new Bundle();
+                        args.putSerializable(ARG_REQ, requests.get(position));
+                        Utils.launchActivity(context.getApplicationContext(), RequestActivity.class, args);
+                    }
+                });
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return users.size();
+        return requests.size();
     }
 
     @NonNull
@@ -68,14 +85,13 @@ public class ListDoctorRequestAdapter extends RecyclerView.Adapter<ListDoctorReq
     public class UserHolder extends RecyclerView.ViewHolder {
 
         private ImageView photo;
-        private TextView name, spec, phone;
+        private TextView name, phone;
         private LinearLayout all;
 
         public UserHolder(View itemView) {
             super(itemView);
             photo = itemView.findViewById(R.id.image);
             name = itemView.findViewById(R.id.name);
-            spec = itemView.findViewById(R.id.sp);
             all = itemView.findViewById(R.id.all);
             phone = itemView.findViewById(R.id.phone);
         }

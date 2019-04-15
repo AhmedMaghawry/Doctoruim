@@ -1,35 +1,44 @@
 package com.ezzat.doctoruim.Model;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.ezzat.doctoruim.Control.Utils.Constants.DOCTOR_TABLE;
+import static com.ezzat.doctoruim.Control.Utils.Constants.MESSAGE_TABLE;
+import static com.ezzat.doctoruim.Control.Utils.Constants.USER_TABLE;
 
 public class Message implements Serializable{
 
-    private User owner, reported;
+    private String phone, reported;
     private MessageStatus status;
     private String content;
 
     public Message(){}
 
-    public Message(User owner, User reported, String content) {
-        this.owner = owner;
+    public Message(String phone, String reported, String content) {
+        this.phone = phone;
         this.reported = reported;
         this.status = MessageStatus.UNREAD;
         this.content = content;
     }
 
-    public User getOwner() {
-        return owner;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setOwner(User owner) {
-        this.owner = owner;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public User getReported() {
+    public String getReported() {
         return reported;
     }
 
-    public void setReported(User reported) {
+    public void setReported(String reported) {
         this.reported = reported;
     }
 
@@ -39,6 +48,7 @@ public class Message implements Serializable{
 
     public void setStatus(MessageStatus status) {
         this.status = status;
+        updateMessage();
     }
 
     public String getContent() {
@@ -47,5 +57,22 @@ public class Message implements Serializable{
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public Map<String, Object> toMap() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("phone", this.phone);
+        map.put("reported", this.reported);
+        map.put("status", this.status);
+        map.put("content", this.content);
+        return map;
+    }
+
+    private void updateMessage() {
+        FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
+        Map<String, Object> childUpdates = new HashMap<>();
+        Map<String, Object> userValues = toMap();
+        childUpdates.put("/" + getPhone(), userValues);
+        mDatabase.getReference(MESSAGE_TABLE).updateChildren(childUpdates);
     }
 }

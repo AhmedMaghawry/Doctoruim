@@ -174,7 +174,8 @@ public class SignUpActivity extends Activity {
 
                             //signing the user
                             signInWithPhoneAuthCredential(SignUpActivity.this, credential);
-                            Boolean b = addUser(name, "Admin", phone, password);
+                            User user = new User(name, password, phone);
+                            Boolean b = user.addUser();
                             if (b)
                                 Toast.makeText(SignUpActivity.this, "User Added Successfully", Toast.LENGTH_SHORT).show();
                             else
@@ -244,17 +245,6 @@ public class SignUpActivity extends Activity {
     protected void onDestroy() {
         super.onDestroy();
         Utils.hideDialog();
-    }
-
-    public boolean addUser(String name, String type, String phone, String password) {
-        try {
-            DatabaseReference base = FirebaseDatabase.getInstance().getReference("Users");
-            User user = new User(name, password, phone);
-            base.child(phone).setValue(user);
-        } catch (Exception e) {
-            return false;
-        }
-        return true;
     }
 
 }

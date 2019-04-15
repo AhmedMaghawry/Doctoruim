@@ -11,7 +11,7 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:id="@+id/image"
-        android:src="@drawable/mar"
+        android:src="@drawable/placeholder"
         android:scaleType="centerCrop"
         android:layout_marginBottom="2dp"/>
 
@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <TextView
-                android:text="Phone : "
+                android:text="id : "
                 style="@style/text_title"/>
             <TextView
                 style="@style/text_def"

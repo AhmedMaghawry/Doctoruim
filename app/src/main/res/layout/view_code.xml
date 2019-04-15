@@ -7,7 +7,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Verify Phone"
+        android:text="Verify id"
         android:gravity="center"
         android:textSize="40sp"
         android:fontFamily="sans-serif-thin"

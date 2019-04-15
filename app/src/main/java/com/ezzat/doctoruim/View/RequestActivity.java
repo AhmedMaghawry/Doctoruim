@@ -8,10 +8,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.util.Util;
+import com.ezzat.doctoruim.Control.DatabaseController;
+import com.ezzat.doctoruim.Control.Utils.Utils;
+import com.ezzat.doctoruim.Control.onEvent;
+import com.ezzat.doctoruim.Model.Doctor;
 import com.ezzat.doctoruim.Model.Request;
+import com.ezzat.doctoruim.Model.User;
+import com.ezzat.doctoruim.Model.UserType;
 import com.ezzat.doctoruim.R;
 
+import java.util.ArrayList;
+
 import static com.ezzat.doctoruim.Control.Utils.Constants.ARG_REQ;
+import static com.ezzat.doctoruim.Control.Utils.Constants.PLACEHOLDER_IMG;
+import static com.ezzat.doctoruim.Control.Utils.Constants.REQUEST_TABLE;
+import static com.ezzat.doctoruim.Control.Utils.Constants.USER_TABLE;
 
 public class RequestActivity extends AppCompatActivity {
 
@@ -35,26 +47,47 @@ public class RequestActivity extends AppCompatActivity {
         reject = findViewById(R.id.reject);
         accept = findViewById(R.id.accept);
 
-        Glide.with(this).load(getImage(request.getOwner().getImage_url())).into(photo);
-        name.setText(request.getOwner().getName());
-        spec.setText(request.getOwner().getAddress());
-        phone.setText(request.getOwner().getPhone());
-        coverletter.setText(request.getMessage());
-        Glide.with(this).load(getImage(request.getCardURL())).into(asso);
-
-        reject.setOnClickListener(new View.OnClickListener() {
+        DatabaseController.getElement(USER_TABLE ,request.getPhone(), User.class, new onEvent() {
             @Override
-            public void onClick(View v) {
-                //TODO:Remove from list
-                onBackPressed();
+            public void onStart(Object object) {
+                Utils.showLoading(RequestActivity.this);
             }
-        });
 
-        accept.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                //TODO:Confirm
-                onBackPressed();
+            public void onProgress(Object object) {
+
+            }
+
+            @Override
+            public void onEnd(Object object) {
+                Utils.hideDialog();
+                final User owner = (User) object;
+                Glide.with(RequestActivity.this).load(owner.getImage()).placeholder(getImage(PLACEHOLDER_IMG)).into(photo);
+                name.setText(owner.getName());
+                spec.setText(owner.getAddress());
+                phone.setText(owner.getPhone());
+
+                coverletter.setText(request.getCover());
+                Glide.with(RequestActivity.this).load(request.getAssociation()).placeholder(getImage(PLACEHOLDER_IMG)).into(asso);
+
+                reject.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        request.deleteRequest();
+                        Utils.launchActivity(RequestActivity.this, RequestsActivity.class, null);
+                    }
+                });
+
+                accept.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Doctor doctor = new Doctor(owner.getPhone(), new ArrayList<String>());
+                        owner.setType(UserType.Doctor);
+                        doctor.addDoctor();
+                        request.deleteRequest();
+                        Utils.launchActivity(RequestActivity.this, RequestsActivity.class, null);
+                    }
+                });
             }
         });
 

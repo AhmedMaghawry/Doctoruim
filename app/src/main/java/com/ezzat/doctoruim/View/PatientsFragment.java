@@ -9,13 +9,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.ezzat.doctoruim.Control.ListDoctorAdapter;
+import com.ezzat.doctoruim.Control.DatabaseController;
+import com.ezzat.doctoruim.Control.ListDoctorRequestAdapter;
 import com.ezzat.doctoruim.Control.ListPatientAdapter;
+import com.ezzat.doctoruim.Control.Utils.Utils;
+import com.ezzat.doctoruim.Control.onEvent;
+import com.ezzat.doctoruim.Model.Request;
 import com.ezzat.doctoruim.Model.User;
+import com.ezzat.doctoruim.Model.UserType;
 import com.ezzat.doctoruim.R;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.ezzat.doctoruim.Control.Utils.Constants.REQUEST_TABLE;
+import static com.ezzat.doctoruim.Control.Utils.Constants.USER_TABLE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,17 +46,26 @@ public class PatientsFragment extends Fragment {
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         listView.setLayoutManager(llm);
-        final List<User> patients = new ArrayList<>();
-        User ezzat = new User("Ahmed Ezzat", "AASDASD", "01129689960");
-        ezzat.setImage_url("ezz");
-        User ars = new User("Arsenous Essa", "AASDASD", "012564689960");
-        ars.setImage_url("ars");
-        User def = new User("Mohamed Deif", "AASDASD", "0154559960");
-        def.setImage_url("def");
-        patients.add(ezzat);
-        patients.add(ars);
-        patients.add(def);
-        listView.setAdapter(new ListPatientAdapter(patients, getActivity()));
+        DatabaseController.getAllUsersType(USER_TABLE, UserType.Patient, new onEvent() {
+            @Override
+            public void onStart(Object object) {
+                Utils.showLoading(getActivity());
+            }
+
+            @Override
+            public void onProgress(Object object) {
+
+            }
+
+            @Override
+            public void onEnd(Object object) {
+                ArrayList<User> patients = new ArrayList<>((ArrayList<User>)object);
+                ListPatientAdapter adapter = new ListPatientAdapter(patients, getActivity());
+                listView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+                Utils.hideDialog();
+            }
+        });
         return v;
     }
 
