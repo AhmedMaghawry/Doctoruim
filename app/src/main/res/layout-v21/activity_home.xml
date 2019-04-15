@@ -17,7 +17,7 @@
         android:backgroundTint="@color/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" tools:targetApi="lollipop">
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -102,6 +102,6 @@
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@+id/tab_layout"/>
+        android:layout_below="@id/tab_layout"/>
 
 </RelativeLayout>
