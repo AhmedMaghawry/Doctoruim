@@ -7,6 +7,8 @@ import android.text.TextUtils
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.viewpager.widget.ViewPager
+import com.afollestad.materialdialogs.MaterialDialog
 import com.ezzat.doctoruim.Control.CustomPagerAdapter
 import com.ezzat.doctoruim.Control.UserLoginTask
 import com.ezzat.doctoruim.Control.Utils.Constants.VERF_SP
@@ -35,49 +37,49 @@ class MainActivity : Activity() {
         val indicator = findViewById<CircleIndicator>(R.id.indicator)
         indicator.setViewPager(viewPager)
 
-//        val dialog = MaterialDialog.Builder(this)
-//                .customView(R.layout.view_login, true)
-//                .positiveText(R.string.login)
-//                .onPositive { dialog, _ ->
-//                    val email : EditText = dialog.customView?.findViewById(R.id.email)!!
-//                    val password : EditText = dialog.customView?.findViewById(R.id.password)!!
-//                    var event : onEvent = object : onEvent{
-//                        override fun onStart(`object`: Any?) {
-//                            Utils.showLoading(self)
-//                        }
-//
-//                        override fun onProgress(`object`: Any?) {}
-//
-//                        override fun onEnd(`object`: Any?) {
-//                            Utils.hideDialog()
-//                            val res = `object` as String?
-//
-//                            showCodeEnter(res)
-//                        }
-//
-//                    }
-//
-//                    var good = true
-//
-//                    if (email.toString().equals("")) {
-//                        email.setError("please add Phone number")
-//                        good = false
-//                    }
-//
-//                    if (password.toString().equals("")) {
-//                        password.setError("please add password")
-//                        good = false
-//                    }
-//
-//                    if (good) {
-//                        var loginTask = UserLoginTask(self, event)
-//                        loginTask.execute(email.text.toString(), password.text.toString())
-//                    }
-//                }
-//
+        val dialog = MaterialDialog.Builder(this)
+                .customView(R.layout.view_login, true)
+                .positiveText(R.string.login)
+                .onPositive { dialog, _ ->
+                    val email : EditText = dialog.customView?.findViewById(R.id.email)!!
+                    val password : EditText = dialog.customView?.findViewById(R.id.password)!!
+                    var event : onEvent = object : onEvent{
+                        override fun onStart(`object`: Any?) {
+                            Utils.showLoading(self)
+                        }
+
+                        override fun onProgress(`object`: Any?) {}
+
+                        override fun onEnd(`object`: Any?) {
+                            Utils.hideDialog()
+                            val res = `object` as String?
+
+                            showCodeEnter(res)
+                        }
+
+                    }
+
+                    var good = true
+
+                    if (email.toString().equals("")) {
+                        email.setError("please add Phone number")
+                        good = false
+                    }
+
+                    if (password.toString().equals("")) {
+                        password.setError("please add password")
+                        good = false
+                    }
+
+                    if (good) {
+                        var loginTask = UserLoginTask(self, event)
+                        loginTask.execute(email.text.toString(), password.text.toString())
+                    }
+                }
+
         val login = findViewById<Button>(R.id.login)
         login.setOnClickListener {
-            showLogin()
+            dialog.show()
         }
 
         val sigup = findViewById<Button>(R.id.signup)
@@ -116,50 +118,6 @@ class MainActivity : Activity() {
 
                             //signing the user
                             signInWithPhoneAuthCredential(self, credential)
-                        }
-                    }
-                }).show()
-    }
-
-    private fun showLogin() {
-        com.pepperonas.materialdialog.MaterialDialog.Builder(this)
-                .customView(R.layout.view_login)
-                .positiveText("Confirm")
-                .buttonCallback(object : com.pepperonas.materialdialog.MaterialDialog.ButtonCallback() {
-                    override fun onPositive(dialog: com.pepperonas.materialdialog.MaterialDialog?) {
-                        val email : EditText = dialog?.findViewById(R.id.email)!!
-                        val password : EditText = dialog.findViewById(R.id.password)!!
-                        var event : onEvent = object : onEvent{
-                            override fun onStart(`object`: Any?) {
-                                Utils.showLoading(self)
-                            }
-
-                            override fun onProgress(`object`: Any?) {}
-
-                            override fun onEnd(`object`: Any?) {
-                                Utils.hideDialog()
-                                val res = `object` as String?
-
-                                showCodeEnter(res)
-                            }
-
-                        }
-
-                        var good = true
-
-                        if (email.toString().equals("")) {
-                            email.setError("please add Phone number")
-                            good = false
-                        }
-
-                        if (password.toString().equals("")) {
-                            password.setError("please add password")
-                            good = false
-                        }
-
-                        if (good) {
-                            var loginTask = UserLoginTask(self, event)
-                            loginTask.execute(email.text.toString(), password.text.toString())
                         }
                     }
                 }).show()
