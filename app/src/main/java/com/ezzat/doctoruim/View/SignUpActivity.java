@@ -2,6 +2,7 @@ package com.ezzat.doctoruim.View;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -14,18 +15,15 @@ import com.ezzat.doctoruim.Control.Utils.SharedValues;
 import com.ezzat.doctoruim.Control.Utils.Utils;
 import com.ezzat.doctoruim.Control.onEvent;
 import com.ezzat.doctoruim.Model.User;
-import com.google.android.gms.common.SignInButton;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.pepperonas.materialdialog.*;
-import com.pepperonas.materialdialog.model.LicenseInfo;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.ezzat.doctoruim.R;
+import com.pepperonas.materialdialog.MaterialDialog;
+import com.pepperonas.materialdialog.model.LicenseInfo;
 
 import static com.ezzat.doctoruim.Control.Utils.Constants.VERF_SP;
 import static com.ezzat.doctoruim.Control.Utils.Utils.signInWithPhoneAuthCredential;
@@ -33,7 +31,7 @@ import static com.ezzat.doctoruim.Control.Utils.Utils.signInWithPhoneAuthCredent
 /**
  * A login screen that offers login via email/password.
  */
-public class SignUpActivity extends Activity {
+public class SignUpActivity extends AppCompatActivity {
 
     private EditText nameView, passwordView, cPasswordView, phoneView;
     private Button signupView;

@@ -1,8 +1,8 @@
 package com.ezzat.doctoruim.View;
 
 import android.app.Activity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -13,44 +13,59 @@ import com.ezzat.doctoruim.Control.DatabaseController;
 import com.ezzat.doctoruim.Control.Utils.Utils;
 import com.ezzat.doctoruim.Control.onEvent;
 import com.ezzat.doctoruim.Model.Doctor;
-import com.ezzat.doctoruim.Model.Request;
+import com.ezzat.doctoruim.Model.Message;
 import com.ezzat.doctoruim.Model.User;
 import com.ezzat.doctoruim.Model.UserType;
 import com.ezzat.doctoruim.R;
 
 import java.util.ArrayList;
 
-import static com.ezzat.doctoruim.Control.Utils.Constants.ARG_REQ;
+import static  com.ezzat.doctoruim.Control.Utils.Constants.ARG_MESS;
 import static com.ezzat.doctoruim.Control.Utils.Constants.PLACEHOLDER_IMG;
-import static com.ezzat.doctoruim.Control.Utils.Constants.REQUEST_TABLE;
 import static com.ezzat.doctoruim.Control.Utils.Constants.USER_TABLE;
 
-public class RequestActivity extends AppCompatActivity {
+public class MessageActivity extends AppCompatActivity {
 
-    private Request request;
-    private ImageView photo, asso;
-    private TextView name, spec, phone, coverletter;
+    private Message message;
+    private ImageView photo;
+    private TextView name, phone,content,reportedUser;
     private Button reject, accept;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_request);
-        request = (Request) getIntent().getExtras().getSerializable(ARG_REQ);
+        setContentView(R.layout.activity_message);
+        message = (Message) getIntent().getExtras().getSerializable(ARG_MESS);
 
         photo = findViewById(R.id.image);
         name = findViewById(R.id.name);
-        spec = findViewById(R.id.sp);
         phone = findViewById(R.id.phone);
-        coverletter = findViewById(R.id.cover);
-        asso = findViewById(R.id.ass);
+        content = findViewById(R.id.content);
         reject = findViewById(R.id.reject);
         accept = findViewById(R.id.accept);
+        reportedUser = findViewById(R.id.reportedUserId);
 
-        DatabaseController.getElement(USER_TABLE ,request.getPhone(), User.class, new onEvent() {
+        reject.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO:Remove from list
+                onBackPressed();
+            }
+        });
+
+        accept.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO:Confirm
+                onBackPressed();
+            }
+        });
+
+
+        DatabaseController.getElement(USER_TABLE ,message.getPhone(), User.class, new onEvent() {
             @Override
             public void onStart(Object object) {
-                Utils.showLoading(RequestActivity.this);
+                Utils.showLoading(MessageActivity.this);
             }
 
             @Override
@@ -62,35 +77,27 @@ public class RequestActivity extends AppCompatActivity {
             public void onEnd(Object object) {
                 Utils.hideDialog();
                 final User owner = (User) object;
-                Glide.with(RequestActivity.this).load(owner.getImage()).placeholder(getImage(PLACEHOLDER_IMG)).into(photo);
+                Glide.with(MessageActivity.this).load(owner.getImage()).placeholder(getImage(PLACEHOLDER_IMG)).into(photo);
                 name.setText(owner.getName());
-                spec.setText(owner.getAddress());
                 phone.setText(owner.getPhone());
-
-                coverletter.setText(request.getCover());
-                Glide.with(RequestActivity.this).load(request.getAssociation()).placeholder(getImage(PLACEHOLDER_IMG)).into(asso);
 
                 reject.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        request.deleteRequest();
-                        Utils.launchActivity(RequestActivity.this, RequestsActivity.class, null);
+                        //Todo:Do Some thing
+                        Utils.launchActivity(MessageActivity.this, MessagesActivity.class, null);
                     }
                 });
 
                 accept.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Doctor doctor = new Doctor(owner.getPhone(), new ArrayList<String>());
-                        owner.setType(UserType.Doctor);
-                        doctor.addDoctor();
-                        request.deleteRequest();
-                        Utils.launchActivity(RequestActivity.this, RequestsActivity.class, null);
+                        //Todo:Do Some thing
+                        Utils.launchActivity(MessageActivity.this, MessagesActivity.class, null);
                     }
                 });
             }
         });
-
     }
 
     public int getImage(String imageName) {

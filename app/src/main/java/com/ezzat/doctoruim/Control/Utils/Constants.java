@@ -16,4 +16,7 @@ public interface Constants {
     String ARG_REQS = "requests";
     String ARG_REQ = "request";
     String PLACEHOLDER_IMG = "placeholder";
+
+    String ARG_MESSES = "messages";
+    String ARG_MESS = "message";
 }

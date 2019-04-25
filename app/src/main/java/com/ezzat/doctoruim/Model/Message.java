@@ -48,7 +48,6 @@ public class Message implements Serializable{
 
     public void setStatus(MessageStatus status) {
         this.status = status;
-        updateMessage();
     }
 
     public String getContent() {

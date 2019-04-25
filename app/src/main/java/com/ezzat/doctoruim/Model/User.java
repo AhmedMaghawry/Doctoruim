@@ -34,7 +34,6 @@ public class User implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-        updateUser();
     }
 
     public String getPassword() {
@@ -43,7 +42,6 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
-        updateUser();
     }
 
     public String getPhone() {
@@ -52,7 +50,6 @@ public class User implements Serializable {
 
     public void setPhone(String phone) {
         this.phone = phone;
-        updateUser();
     }
 
     public String getImage() {
@@ -61,7 +58,6 @@ public class User implements Serializable {
 
     public void setImage(String image) {
         this.image = image;
-        updateUser();
     }
 
     public String getAddress() {
@@ -70,7 +66,6 @@ public class User implements Serializable {
 
     public void setAddress(String address) {
         this.address = address;
-        updateUser();
     }
 
     public UserType getType() {
@@ -79,7 +74,6 @@ public class User implements Serializable {
 
     public void setType(UserType type) {
         this.type = type;
-        updateUser();
     }
 
     public Map<String, Object> toMap() {

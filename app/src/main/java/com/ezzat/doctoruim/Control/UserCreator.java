@@ -46,7 +46,6 @@ public class UserCreator extends AsyncTask<String, Void, Void> {
                 String code = credential.getSmsCode();
 
                 //sometime the code is not detected automatically
-                //in this case the code will be null
                 //so user has to manually enter the code
 //                if (code != null) {
 //                    callback.onEnd(code);

@@ -29,7 +29,6 @@ public class Doctor implements Serializable {
 
     public void setPhone(String phone) {
         this.phone = phone;
-        updateDoctor();
     }
 
 
@@ -39,11 +38,9 @@ public class Doctor implements Serializable {
 
     public void setSpecialization(ArrayList<String> specialization) {
         this.specialization = specialization;
-        updateDoctor();
     }
     public void addSpecialization(String spec) {
         specialization.add(spec);
-        updateDoctor();
 
     }
 

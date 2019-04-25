@@ -38,6 +38,12 @@
             android:parentActivityName=".View.HomeActivity" />
         <activity android:name=".View.RequestActivity"
             android:parentActivityName=".View.RequestsActivity"/>
+
+        <activity
+            android:name=".View.MessagesActivity"
+            android:parentActivityName=".View.HomeActivity" />
+        <activity android:name=".View.MessageActivity"
+            android:parentActivityName=".View.MessagesActivity"/>
     </application>
 
 </manifest>

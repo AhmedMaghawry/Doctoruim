@@ -1,5 +1,6 @@
 package com.ezzat.doctoruim.View;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
@@ -92,7 +93,7 @@ public class HomeActivity extends AppCompatActivity {
         messages.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO:OPEN Messages
+                Utils.launchActivity(HomeActivity.this, MessagesActivity.class, null);
             }
         });
 
