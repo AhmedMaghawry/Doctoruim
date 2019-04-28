@@ -1,17 +1,15 @@
 package com.ezzat.doctoruim.Control;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.ezzat.doctoruim.Control.Utils.Utils;
@@ -21,8 +19,6 @@ import com.ezzat.doctoruim.R;
 import com.ezzat.doctoruim.View.RequestActivity;
 
 import java.util.List;
-
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import static com.ezzat.doctoruim.Control.Utils.Constants.ARG_REQ;
 import static com.ezzat.doctoruim.Control.Utils.Constants.PLACEHOLDER_IMG;

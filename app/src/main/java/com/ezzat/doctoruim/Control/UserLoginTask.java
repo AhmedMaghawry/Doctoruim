@@ -2,20 +2,14 @@ package com.ezzat.doctoruim.Control;
 
 import android.app.Activity;
 import android.os.AsyncTask;
-import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.ezzat.doctoruim.Control.Utils.SharedValues;
 import com.ezzat.doctoruim.Control.Utils.Utils;
 import com.ezzat.doctoruim.Model.User;
-import com.ezzat.doctoruim.View.SignUpActivity;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.FirebaseTooManyRequestsException;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
@@ -27,7 +21,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import static com.ezzat.doctoruim.Control.Utils.Constants.*;
 import static com.ezzat.doctoruim.Control.Utils.Utils.sendVerCode;
-import static com.ezzat.doctoruim.Control.Utils.Utils.signInWithPhoneAuthCredential;
 
 public class UserLoginTask extends AsyncTask<String, Void, Boolean> {
 

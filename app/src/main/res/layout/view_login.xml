@@ -15,7 +15,7 @@
         android:textColor="@color/gray"
         android:layout_marginBottom="20dp"/>
 
-    <android.support.design.widget.TextInputLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:textColorHint="@color/gray_white"
         android:layout_height="wrap_content">
@@ -37,9 +37,9 @@
             android:drawableLeft="@drawable/phone"
             android:singleLine="true" />
 
-    </android.support.design.widget.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <android.support.design.widget.TextInputLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColorHint="@color/gray_white"
@@ -62,7 +62,7 @@
             android:drawableLeft="@drawable/pass"
             android:singleLine="true" />
 
-    </android.support.design.widget.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
 
 </LinearLayout>

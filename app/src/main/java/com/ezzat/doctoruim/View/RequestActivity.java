@@ -1,7 +1,6 @@
 package com.ezzat.doctoruim.View;
 
-import android.app.Activity;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,14 +21,13 @@ import java.util.ArrayList;
 
 import static com.ezzat.doctoruim.Control.Utils.Constants.ARG_REQ;
 import static com.ezzat.doctoruim.Control.Utils.Constants.PLACEHOLDER_IMG;
-import static com.ezzat.doctoruim.Control.Utils.Constants.REQUEST_TABLE;
 import static com.ezzat.doctoruim.Control.Utils.Constants.USER_TABLE;
 
 public class RequestActivity extends AppCompatActivity {
 
     private Request request;
     private ImageView photo, asso;
-    private TextView name, spec, phone, coverletter;
+    private TextView name, phone, coverletter;
     private Button reject, accept;
 
     @Override
@@ -40,7 +38,6 @@ public class RequestActivity extends AppCompatActivity {
 
         photo = findViewById(R.id.image);
         name = findViewById(R.id.name);
-        spec = findViewById(R.id.sp);
         phone = findViewById(R.id.phone);
         coverletter = findViewById(R.id.cover);
         asso = findViewById(R.id.ass);
@@ -64,7 +61,6 @@ public class RequestActivity extends AppCompatActivity {
                 final User owner = (User) object;
                 Glide.with(RequestActivity.this).load(owner.getImage()).placeholder(getImage(PLACEHOLDER_IMG)).into(photo);
                 name.setText(owner.getName());
-                spec.setText(owner.getAddress());
                 phone.setText(owner.getPhone());
 
                 coverletter.setText(request.getCover());

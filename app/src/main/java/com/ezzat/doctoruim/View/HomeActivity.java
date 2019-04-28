@@ -1,12 +1,11 @@
 package com.ezzat.doctoruim.View;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.NonNull;
+import com.google.android.material.tabs.TabLayout;
+import androidx.viewpager.widget.ViewPager;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -14,8 +13,6 @@ import android.widget.TextView;
 
 import com.ezzat.doctoruim.Control.PagerAdapter;
 import com.ezzat.doctoruim.Control.Utils.Utils;
-import com.ezzat.doctoruim.Model.Request;
-import com.ezzat.doctoruim.Model.User;
 import com.ezzat.doctoruim.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -24,9 +21,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-
-import static com.ezzat.doctoruim.Control.Utils.Constants.ARG_REQS;
 import static com.ezzat.doctoruim.Control.Utils.Constants.REQUEST_TABLE;
 
 public class HomeActivity extends AppCompatActivity {

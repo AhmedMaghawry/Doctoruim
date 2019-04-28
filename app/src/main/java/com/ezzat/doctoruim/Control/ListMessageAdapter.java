@@ -2,8 +2,8 @@ package com.ezzat.doctoruim.Control;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,14 +17,11 @@ import com.ezzat.doctoruim.Model.Message;
 import com.ezzat.doctoruim.Model.User;
 import com.ezzat.doctoruim.R;
 import com.ezzat.doctoruim.View.MessageActivity;
-import com.ezzat.doctoruim.View.MessagesActivity;
-import com.ezzat.doctoruim.View.RequestActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.ezzat.doctoruim.Control.Utils.Constants.ARG_MESS;
-import static  com.ezzat.doctoruim.Control.Utils.Constants.ARG_REQ;
 import static com.ezzat.doctoruim.Control.Utils.Constants.PLACEHOLDER_IMG;
 import static com.ezzat.doctoruim.Control.Utils.Constants.USER_TABLE;
 
@@ -85,15 +82,13 @@ public class ListMessageAdapter extends RecyclerView.Adapter<ListMessageAdapter.
     public class MessageHolder extends RecyclerView.ViewHolder {
 
         private ImageView photo;
-        private TextView name, phone,content,reportedUser;
+        private TextView name, phone;
         private LinearLayout all;
 
         public MessageHolder(View itemView) {
             super(itemView);
             photo = itemView.findViewById(R.id.image);
             name = itemView.findViewById(R.id.name);
-            content = itemView.findViewById(R.id.content);
-            reportedUser = itemView.findViewById(R.id.reportedUserId);
             all = itemView.findViewById(R.id.all);
             phone = itemView.findViewById(R.id.phone);
         }

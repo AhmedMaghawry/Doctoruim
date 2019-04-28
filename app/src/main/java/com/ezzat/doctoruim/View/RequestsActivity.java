@@ -1,24 +1,18 @@
 package com.ezzat.doctoruim.View;
 
-import android.app.Activity;
-import android.app.AppComponentFactory;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import com.ezzat.doctoruim.Control.DatabaseController;
-import com.ezzat.doctoruim.Control.ListDoctorAdapter;
 import com.ezzat.doctoruim.Control.ListDoctorRequestAdapter;
 import com.ezzat.doctoruim.Control.Utils.Utils;
 import com.ezzat.doctoruim.Control.onEvent;
 import com.ezzat.doctoruim.Model.Request;
-import com.ezzat.doctoruim.Model.User;
 import com.ezzat.doctoruim.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import static com.ezzat.doctoruim.Control.Utils.Constants.ARG_REQS;
 import static com.ezzat.doctoruim.Control.Utils.Constants.REQUEST_TABLE;
 
 public class RequestsActivity extends AppCompatActivity {

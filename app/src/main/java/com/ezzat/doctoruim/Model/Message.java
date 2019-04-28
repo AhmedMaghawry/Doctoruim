@@ -67,11 +67,21 @@ public class Message implements Serializable{
         return map;
     }
 
-    private void updateMessage() {
+    public void updateMessage() {
         FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
         Map<String, Object> childUpdates = new HashMap<>();
         Map<String, Object> userValues = toMap();
         childUpdates.put("/" + getPhone(), userValues);
         mDatabase.getReference(MESSAGE_TABLE).updateChildren(childUpdates);
+    }
+
+    public boolean addMessage() {
+        try {
+            DatabaseReference base = FirebaseDatabase.getInstance().getReference(MESSAGE_TABLE);
+            base.child(phone).setValue(this);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
     }
 }

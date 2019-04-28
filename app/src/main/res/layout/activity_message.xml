@@ -81,13 +81,13 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
-        android:text="Cover Letter"
+        android:text="Message"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/cover"
+        android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
@@ -102,43 +102,22 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
-        android:text="Association Card"
+        android:text="Reported User ID"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold" />
 
-    <ImageView
-        android:id="@+id/ass"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:textSize="11sp"
-        android:scaleType="center"/>
-
-    <LinearLayout
+    <TextView
+        android:id="@+id/reportedUserId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="2"
-        android:layout_marginTop="20dp">
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:background="@color/red"
-            android:id="@+id/reject"
-            android:text="Reject"
-            android:textColor="@color/white"/>
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:background="@color/green"
-            android:id="@+id/accept"
-            android:text="Accept"
-            android:textColor="@color/white"/>
-    </LinearLayout>
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:maxLines="50"
+        android:textColor="@color/gray"
+        android:textSize="11sp"
+        tools:text="ASDasdasd" />
+
 </LinearLayout>
 
 </ScrollView>
