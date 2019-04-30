@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.ezzat.doctoruim">
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -14,9 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
-        <activity
-            android:name=".View.MainActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <!--<activity-->
+            <!--android:name=".View.MainActivity"-->
+            <!--android:theme="@style/Theme.AppCompat.NoActionBar" />-->
         <activity
             android:name=".View.SplashActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
@@ -44,6 +44,8 @@
             android:parentActivityName=".View.HomeActivity" />
         <activity android:name=".View.MessageActivity"
             android:parentActivityName=".View.MessagesActivity"/>
+        <activity android:name=".View.DoctorProfileActivity"/>
+        <activity android:name=".View.SendMessageActivity"/>
     </application>
 
 </manifest>

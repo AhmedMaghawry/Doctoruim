@@ -13,7 +13,7 @@ class SplashActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         Handler().postDelayed({
-            Utils.launchActivity(applicationContext, MainActivity::class.java, null)
+            Utils.launchActivity(applicationContext, DoctorProfileActivity::class.java, null)
             finish()
         }, SPLASH_TIME_OUT)
     }
