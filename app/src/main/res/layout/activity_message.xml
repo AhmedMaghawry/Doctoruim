@@ -77,46 +77,33 @@
 
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
         android:text="Message"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        style="@style/text_title"
+        android:layout_marginLeft="20dp"
+        android:textSize="25sp"
+        />
 
     <TextView
         android:id="@+id/content"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        style="@style/text_def"
+        android:layout_marginLeft="35dp"
+        tools:text="Message Test"
+        android:textSize="15sp"
         android:maxLines="50"
-        android:textColor="@color/gray"
-        android:textSize="11sp"
-        tools:text="ASDasdasd" />
+         />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
         android:text="Reported User ID"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        style="@style/text_title"
+        android:layout_marginLeft="20dp"
+        android:textSize="25sp" />
 
     <TextView
         android:id="@+id/reportedUserId"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:maxLines="50"
-        android:textColor="@color/gray"
-        android:textSize="11sp"
-        tools:text="ASDasdasd" />
+        style="@style/text_def"
+        android:layout_marginLeft="35dp"
+        tools:text="Report Id"
+        android:textSize="15sp"/>
 
 </LinearLayout>
 

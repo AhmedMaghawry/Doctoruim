@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fillViewport="true"
+    tools:context=".View.DoctorProfileActivity">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="280dp">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:src="@drawable/bg_doc"
+            android:alpha="0.3"
+            android:scaleType="centerCrop"/>
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:id="@+id/image"
+        android:layout_gravity="center"
+        android:scaleType="centerCrop"
+        android:layout_marginTop="60dp"
+        android:clickable="true"/>
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="5dp"
+            android:id="@+id/name">
+
+            <TextView
+                android:text="Name : "
+                style="@style/text_title" />
+            <TextView
+                style="@style/text_def"
+                android:id="@+id/nameTV"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="5dp"
+            android:id="@+id/spec">
+
+            <TextView
+                android:text="Specifications : "
+                style="@style/text_title" />
+            <TextView
+                style="@style/text_def"
+                android:id="@+id/specTV"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="5dp"
+            android:id="@+id/phone">
+
+            <TextView
+                android:text="Phone : "
+                style="@style/text_title" />
+            <TextView
+                style="@style/text_def"
+                android:id="@+id/phoneTV"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="5dp"
+            android:id="@+id/address">
+
+            <TextView
+                android:text="Address : "
+                style="@style/text_title" />
+            <TextView
+                style="@style/text_def"
+                android:id="@+id/addressTV"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:background="@drawable/bg_button_3"
+        android:fontFamily="sans-serif-thin"
+        android:textColor="@color/white"
+        android:layout_gravity="bottom"
+        android:layout_margin="20dp"
+        android:id="@+id/save"/>
+</LinearLayout>
+
+</ScrollView>

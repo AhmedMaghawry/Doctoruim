@@ -14,13 +14,13 @@ import static com.ezzat.doctoruim.Control.Utils.Constants.USER_TABLE;
 public class Doctor implements Serializable {
 
     private String phone;
-    private ArrayList<String> specialization;
+    private ArrayList<String> specializations;
 
     public Doctor (){}
 
-    public Doctor(String phone, ArrayList<String> specialization) {
+    public Doctor(String phone, ArrayList<String> specializations) {
         this.phone = phone;
-        this.specialization = specialization;
+        this.specializations = specializations;
     }
 
     public String getPhone() {
@@ -32,22 +32,18 @@ public class Doctor implements Serializable {
     }
 
 
-    public ArrayList<String> getSpecialization() {
-        return specialization;
+    public ArrayList<String> getSpecializations() {
+        return specializations;
     }
 
-    public void setSpecialization(ArrayList<String> specialization) {
-        this.specialization = specialization;
-    }
-    public void addSpecialization(String spec) {
-        specialization.add(spec);
-
+    public void setSpecializations(ArrayList<String> specializations) {
+        this.specializations = specializations;
     }
 
     public Map<String, Object> toMap() {
         Map<String, Object> map = new HashMap<>();
         map.put("phone", this.phone);
-        map.put("specialization", specialization);
+        map.put("specializations", specializations);
         return map;
     }
 
@@ -58,7 +54,7 @@ public class Doctor implements Serializable {
         mDatabase.getReference(DOCTOR_TABLE).updateChildren(childUpdates);
     }
 
-    private void updateDoctor() {
+    public void updateDoctor() {
         FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
         Map<String, Object> childUpdates = new HashMap<>();
         Map<String, Object> userValues = toMap();

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/card_bg"
+    android:orientation="horizontal"
+    android:layout_margin="10dp"
+    android:id="@+id/all">
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:id="@+id/image"
+        android:src="@drawable/placeholder"
+        android:scaleType="centerCrop"
+        android:layout_marginBottom="2dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="5dp"
+        android:gravity="center">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:text="Patient Name : "
+                style="@style/text_title"
+                android:textSize="13sp"/>
+            <TextView
+                android:text="Ahmed Ezzat"
+                android:id="@+id/name"
+                style="@style/text_def" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:text="Clinic Name : "
+                style="@style/text_title"
+                android:textSize="13sp"/>
+            <TextView
+                style="@style/text_def"
+                android:text="01129689960"
+                android:id="@+id/clinic" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:text="Date : "
+                style="@style/text_title"
+                android:textSize="13sp"/>
+            <TextView
+                style="@style/text_def"
+                android:text="Thu, 05:00pm"
+                android:id="@+id/date" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

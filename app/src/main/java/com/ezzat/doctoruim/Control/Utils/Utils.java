@@ -12,6 +12,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.ezzat.doctoruim.View.HomeActivity;
+import com.ezzat.doctoruim.View.HomeDoctorActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskExecutors;
@@ -21,6 +22,8 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
@@ -122,7 +125,7 @@ public class Utils {
 
                             SharedValues.saveValue(context, CODE_SP, credential.getSmsCode());
 
-                            Utils.launchActivity(context, HomeActivity.class, null);
+                            Utils.launchActivity(context, HomeDoctorActivity.class, null);
                             // ...
                         } else {
                             // Sign in failed, display a message and update the UI
@@ -135,6 +138,24 @@ public class Utils {
                         }
                     }
                 });
+    }
+
+    public static String getStrings(List<String> days) {
+        String res = "";
+        for (int i = 0; i < days.size() - 1; i++) {
+            res += days.get(i) + ", ";
+        }
+        res += days.get(days.size() - 1);
+        return res;
+    }
+
+    public static ArrayList<String> getList(String s) {
+        String[] from = s.split(",");
+        ArrayList<String> res = new ArrayList<>();
+        for (String x : from) {
+            res.add(x);
+        }
+        return res;
     }
 
 }

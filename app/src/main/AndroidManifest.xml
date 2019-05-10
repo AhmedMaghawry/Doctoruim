@@ -2,9 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.ezzat.doctoruim">
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -14,9 +15,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
-        <!--<activity-->
-            <!--android:name=".View.MainActivity"-->
-            <!--android:theme="@style/Theme.AppCompat.NoActionBar" />-->
+        <activity android:name=".View.AddClinicActivity"></activity>
+        <activity
+            android:name=".View.HomeDoctorActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".View.MainActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".View.SplashActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
@@ -36,16 +41,21 @@
         <activity
             android:name=".View.RequestsActivity"
             android:parentActivityName=".View.HomeActivity" />
-        <activity android:name=".View.RequestActivity"
-            android:parentActivityName=".View.RequestsActivity"/>
-
+        <activity
+            android:name=".View.RequestActivity"
+            android:parentActivityName=".View.RequestsActivity" />
         <activity
             android:name=".View.MessagesActivity"
             android:parentActivityName=".View.HomeActivity" />
-        <activity android:name=".View.MessageActivity"
-            android:parentActivityName=".View.MessagesActivity"/>
-        <activity android:name=".View.DoctorProfileActivity"/>
-        <activity android:name=".View.SendMessageActivity"/>
+        <activity
+            android:name=".View.MessageActivity"
+            android:parentActivityName=".View.MessagesActivity" />
+        <activity
+            android:name=".View.SendMessageActivity"
+            android:parentActivityName=".View.DoctorProfileActivity" />
+        <activity
+            android:name=".View.DoctorProfileActivity"
+            android:parentActivityName=".View.HomeDoctorActivity" />
     </application>
 
 </manifest>

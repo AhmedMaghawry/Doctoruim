@@ -52,7 +52,7 @@ class MainActivity : Activity() {
     override fun onStart() {
         super.onStart()
         if (FirebaseAuth.getInstance().currentUser != null)
-            Utils.launchActivity(applicationContext, HomeActivity::class.java, null)
+            Utils.launchActivity(applicationContext, HomeDoctorActivity::class.java, null)
     }
 
     override fun onDestroy() {

@@ -100,7 +100,7 @@ public class User implements Serializable {
         }
     }
 
-    private void updateUser() {
+    public void updateUser() {
         FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
         Map<String, Object> childUpdates = new HashMap<>();
         Map<String, Object> userValues = toMap();
