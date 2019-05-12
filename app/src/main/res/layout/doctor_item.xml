@@ -66,6 +66,7 @@
                 style="@style/text_title"/>
             <TextView
                 style="@style/text_def"
+                android:lines="2"
                 android:id="@+id/address" />
         </LinearLayout>
 

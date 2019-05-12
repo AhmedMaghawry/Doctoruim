@@ -39,6 +39,7 @@
             <TextView
                 style="@style/text_def"
                 android:text="01129689960"
+                android:lines="2"
                 android:id="@+id/loc" />
         </LinearLayout>
 

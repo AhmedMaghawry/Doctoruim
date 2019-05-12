@@ -64,4 +64,14 @@ public class Request implements Serializable {
         childUpdates.put("/" + getPhone(), null);
         mDatabase.getReference(REQUEST_TABLE).updateChildren(childUpdates);
     }
+
+    public boolean addRequest() {
+        try {
+            DatabaseReference base = FirebaseDatabase.getInstance().getReference(REQUEST_TABLE);
+            base.child(phone).setValue(this);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
 }

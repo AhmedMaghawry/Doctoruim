@@ -12,16 +12,15 @@ import static com.ezzat.doctoruim.Control.Utils.Constants.RESERVATION_TABLE;
 
 public class Reservation implements Serializable {
 
-    private String patientID, doctorID, clinicID,id;
+    private String patientID, doctorID,id;
     private String date;
     private ReservationStatus status;
 
     public Reservation(){}
 
-    public Reservation(String patientID, String doctorID, String clinicID, String date,String id) {
+    public Reservation(String patientID, String doctorID, String date,String id) {
         this.patientID = patientID;
         this.doctorID = doctorID;
-        this.clinicID = clinicID;
         this.date = date;
         this.id = id;
         status = ReservationStatus.INPROGRESS;
@@ -41,14 +40,6 @@ public class Reservation implements Serializable {
 
     public void setDoctorID(String doctorID) {
         this.doctorID = doctorID;
-    }
-
-    public String getClinicID() {
-        return clinicID;
-    }
-
-    public void setClinicID(String clinicID) {
-        this.clinicID = clinicID;
     }
 
     public String getDate() {
@@ -79,7 +70,6 @@ public class Reservation implements Serializable {
         Map<String, Object> map = new HashMap<>();
         map.put("patientID", this.patientID);
         map.put("doctorID", this.doctorID);
-        map.put("clinicID", this.clinicID);
         map.put("date", this.date);
         map.put("status", this.status);
         map.put("id", id);

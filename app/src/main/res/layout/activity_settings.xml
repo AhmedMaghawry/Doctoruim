@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fillViewport="true"
+    tools:context=".View.Admin.MessageActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/text_title"
+            android:layout_marginLeft="20dp"
+            android:textSize="25sp"
+            android:text="Send Doctor Access Request :"
+            />
+
+        <TextView
+            style="@style/text_title"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            android:textSize="20sp"
+            android:text="Cover Letter"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:id="@+id/cover"
+            android:lines="5"
+            android:layout_marginLeft="55dp"
+            android:hint="Enter your cover letter here"
+            android:textSize="15sp"
+            android:maxLines="50"
+            />
+
+        <TextView
+            style="@style/text_title"
+            android:layout_marginLeft="40dp"
+            android:textSize="20sp"
+            android:layout_marginTop="20dp"
+            android:text="Association Card"
+            />
+
+        <ImageView
+            android:id="@+id/ass"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textSize="11sp"
+            android:scaleType="center"
+            android:src="@android:drawable/ic_menu_gallery"/>
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Send The Request"
+            android:background="@drawable/bg_button_5"
+            android:fontFamily="sans-serif-thin"
+            android:textColor="@color/white"
+            android:layout_gravity="bottom"
+            android:layout_margin="20dp"
+            android:id="@+id/send"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Delete Account"
+            android:background="@drawable/bg_button_4"
+            android:fontFamily="sans-serif-thin"
+            android:textColor="@color/white"
+            android:layout_gravity="bottom"
+            android:layout_margin="20dp"
+            android:id="@+id/delete"/>
+    </LinearLayout>
+
+</ScrollView>

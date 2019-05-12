@@ -18,7 +18,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import static com.ezzat.doctoruim.Control.Utils.Constants.CLINIC_TABLE;
 import static com.ezzat.doctoruim.Control.Utils.Constants.DOCTOR_TABLE;
@@ -166,4 +169,45 @@ public class DatabaseController {
         });
     }
 
+    public static void getAllReservationsPatient(final String phone , final onEvent event) {
+
+        event.onStart(null);
+        DatabaseReference base = FirebaseDatabase.getInstance().getReference(RESERVATION_TABLE);
+        base.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ArrayList<Object> res = new ArrayList<>();
+                for (DataSnapshot doctorsReservations : dataSnapshot.getChildren()) {
+                    for (DataSnapshot data : doctorsReservations.getChildren()) {
+                        Reservation r = data.getValue(Reservation.class);
+                        try {
+                            if (isValidDate(r.getDate()) && r.getPatientID().equals(phone))
+                                res.add(r);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+                event.onEnd(res);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    private static boolean isValidDate(String date) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        Date reDate = sdf.parse(date);
+        Date curDate = new Date();
+
+        if (reDate.compareTo(curDate) > 0 || reDate.compareTo(curDate) == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

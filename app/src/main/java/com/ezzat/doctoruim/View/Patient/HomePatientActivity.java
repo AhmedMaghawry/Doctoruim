@@ -18,6 +18,7 @@ import com.ezzat.doctoruim.Model.Doctor;
 import com.ezzat.doctoruim.Model.User;
 import com.ezzat.doctoruim.Model.UserType;
 import com.ezzat.doctoruim.R;
+import com.ezzat.doctoruim.View.MainActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -31,6 +32,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -229,17 +231,19 @@ public class HomePatientActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_profile) {
-            // Handle the camera action
+            Utils.launchActivity(HomePatientActivity.this, PatientProfileActivity.class, null);
         } else if (id == R.id.nav_reservation) {
-
+            Utils.launchActivity(HomePatientActivity.this, ReservationsActivity.class, null);
         } else if (id == R.id.nav_send) {
-
+            Utils.launchActivity(HomePatientActivity.this, SendPatientActivity.class, null);
         } else if (id == R.id.nav_about) {
-
+            Utils.launchActivity(HomePatientActivity.this, AboutActivity.class, null);
         } else if (id == R.id.nav_settings) {
-
+            Utils.launchActivity(HomePatientActivity.this, SettingsActivity.class, null);
         } else if (id == R.id.nav_logout) {
-
+            FirebaseAuth.getInstance().signOut();
+            Utils.launchActivity(HomePatientActivity.this, MainActivity.class, null);
+            finish();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
