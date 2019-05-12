@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View.HomeDoctorActivity"
+    tools:context=".View.Doctor.HomeDoctorActivity"
     android:background="@color/white">
 
     <androidx.appcompat.widget.Toolbar
@@ -67,10 +67,20 @@
         app:tabTextColor="@color/white"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
+
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:layout_below="@+id/tab_layout"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="20dp"
+        android:src="@drawable/ic_mail"
+        android:id="@+id/mail"/>
 
 </RelativeLayout>

@@ -16,7 +16,7 @@ import com.ezzat.doctoruim.Control.Utils.Utils;
 import com.ezzat.doctoruim.Model.Message;
 import com.ezzat.doctoruim.Model.User;
 import com.ezzat.doctoruim.R;
-import com.ezzat.doctoruim.View.MessageActivity;
+import com.ezzat.doctoruim.View.Admin.MessageActivity;
 
 import java.util.ArrayList;
 import java.util.List;

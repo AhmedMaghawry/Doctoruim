@@ -21,6 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 import static com.ezzat.doctoruim.Control.Utils.Constants.CLINIC_TABLE;
+import static com.ezzat.doctoruim.Control.Utils.Constants.DOCTOR_TABLE;
 import static com.ezzat.doctoruim.Control.Utils.Constants.RESERVATION_TABLE;
 
 public class DatabaseController {
@@ -43,6 +44,8 @@ public class DatabaseController {
                     c = dataSnapshot.getValue(Message.class);
                 } else if (className.equals(Clinic.class)) {
                     c = dataSnapshot.getValue(Clinic.class);
+                } else if (className.equals(Reservation.class)) {
+                    c = dataSnapshot.getValue(Reservation.class);
                 }
                 event.onEnd(c);
             }
@@ -62,7 +65,28 @@ public class DatabaseController {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 ArrayList<Object> res = new ArrayList<>();
                 for (DataSnapshot data : dataSnapshot.getChildren()) {
-                    res.add(data.getValue(className));
+                        res.add(data.getValue(className));
+                }
+                event.onEnd(res);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    public static void getAllDoctor(final onEvent event) {
+        event.onStart(null);
+        DatabaseReference base = FirebaseDatabase.getInstance().getReference(DOCTOR_TABLE);
+        base.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ArrayList<Object> res = new ArrayList<>();
+                for (DataSnapshot data : dataSnapshot.getChildren()) {
+                    Doctor c = data.getValue(Doctor.class);
+                    res.add(c);
                 }
                 event.onEnd(res);
             }

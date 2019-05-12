@@ -16,7 +16,7 @@ import com.ezzat.doctoruim.Control.Utils.Utils;
 import com.ezzat.doctoruim.Model.Request;
 import com.ezzat.doctoruim.Model.User;
 import com.ezzat.doctoruim.R;
-import com.ezzat.doctoruim.View.RequestActivity;
+import com.ezzat.doctoruim.View.Admin.RequestActivity;
 
 import java.util.List;
 

@@ -1,7 +1,9 @@
-package com.ezzat.doctoruim.View;
+package com.ezzat.doctoruim.View.Admin;
 
 import android.os.Bundle;
 import androidx.annotation.NonNull;
+
+import com.ezzat.doctoruim.View.MainActivity;
 import com.google.android.material.tabs.TabLayout;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;

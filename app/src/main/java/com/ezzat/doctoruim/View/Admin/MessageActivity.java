@@ -1,4 +1,4 @@
-package com.ezzat.doctoruim.View;
+package com.ezzat.doctoruim.View.Admin;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;

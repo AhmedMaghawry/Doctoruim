@@ -12,7 +12,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@color/white"
     android:layout_gravity="center"
-    tools:context=".View.AddClinicActivity">
+    tools:context=".View.Doctor.AddClinicActivity">
 
     <ScrollView
         android:id="@+id/create_clinic"

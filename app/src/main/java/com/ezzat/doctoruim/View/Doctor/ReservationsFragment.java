@@ -1,4 +1,4 @@
-package com.ezzat.doctoruim.View;
+package com.ezzat.doctoruim.View.Doctor;
 
 
 import android.annotation.SuppressLint;

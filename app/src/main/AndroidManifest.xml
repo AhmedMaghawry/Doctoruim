@@ -15,9 +15,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
-        <activity android:name=".View.AddClinicActivity"></activity>
         <activity
-            android:name=".View.HomeDoctorActivity"
+            android:name=".View.Patient.HomePatientActivity"
+            android:label="Home"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".View.Doctor.AddClinicActivity" />
+        <activity
+            android:name=".View.Doctor.HomeDoctorActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".View.MainActivity"
@@ -36,26 +40,26 @@
             android:label="@string/title_activity_sign_up"
             android:parentActivityName=".View.MainActivity" />
         <activity
-            android:name=".View.HomeActivity"
+            android:name=".View.Admin.HomeActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".View.RequestsActivity"
-            android:parentActivityName=".View.HomeActivity" />
+            android:name=".View.Admin.RequestsActivity"
+            android:parentActivityName=".View.Admin.HomeActivity" />
         <activity
-            android:name=".View.RequestActivity"
-            android:parentActivityName=".View.RequestsActivity" />
+            android:name=".View.Admin.RequestActivity"
+            android:parentActivityName=".View.Admin.RequestsActivity" />
         <activity
-            android:name=".View.MessagesActivity"
-            android:parentActivityName=".View.HomeActivity" />
+            android:name=".View.Admin.MessagesActivity"
+            android:parentActivityName=".View.Admin.HomeActivity" />
         <activity
-            android:name=".View.MessageActivity"
-            android:parentActivityName=".View.MessagesActivity" />
+            android:name=".View.Admin.MessageActivity"
+            android:parentActivityName=".View.Admin.MessagesActivity" />
         <activity
-            android:name=".View.SendMessageActivity"
-            android:parentActivityName=".View.DoctorProfileActivity" />
+            android:name=".View.Doctor.SendMessageActivity"
+            android:parentActivityName=".View.Doctor.DoctorProfileActivity" />
         <activity
-            android:name=".View.DoctorProfileActivity"
-            android:parentActivityName=".View.HomeDoctorActivity" />
+            android:name=".View.Doctor.DoctorProfileActivity"
+            android:parentActivityName=".View.Doctor.HomeDoctorActivity" />
     </application>
 
 </manifest>

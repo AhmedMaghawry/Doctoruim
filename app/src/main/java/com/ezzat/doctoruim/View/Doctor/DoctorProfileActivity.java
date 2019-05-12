@@ -1,4 +1,4 @@
-package com.ezzat.doctoruim.View;
+package com.ezzat.doctoruim.View.Doctor;
 
 
 import android.content.Intent;
@@ -113,7 +113,7 @@ public class DoctorProfileActivity extends AppCompatActivity {
                     public void onEnd(Object object) {
                         Utils.hideDialog();
                         currentDoctor = (Doctor) object;
-                        spec.setText(getStrings(currentDoctor.getSpecializations()));
+                        spec.setText(getStrings(currentDoctor.getSps()));
                     }
                 });
             }
@@ -125,7 +125,7 @@ public class DoctorProfileActivity extends AppCompatActivity {
                    currentUser.setAddress(String.valueOf(address.getText()));
                    currentUser.setName(String.valueOf(name.getText()));
                    currentUser.setPhone(String.valueOf(phone.getText()));
-                   currentDoctor.setSpecializations(getList(spec.getText().toString()));
+                   currentDoctor.setSps(getList(spec.getText().toString()));
                    currentUser.updateUser();
                    currentDoctor.updateDoctor();
                    onBackPressed();

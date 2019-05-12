@@ -9,10 +9,17 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.ezzat.doctoruim.View.HomeActivity;
-import com.ezzat.doctoruim.View.HomeDoctorActivity;
+import com.bumptech.glide.Glide;
+import com.ezzat.doctoruim.Control.DatabaseController;
+import com.ezzat.doctoruim.Control.onEvent;
+import com.ezzat.doctoruim.Model.User;
+import com.ezzat.doctoruim.View.Admin.HomeActivity;
+import com.ezzat.doctoruim.View.Doctor.DoctorProfileActivity;
+import com.ezzat.doctoruim.View.Doctor.HomeDoctorActivity;
+import com.ezzat.doctoruim.View.Patient.HomePatientActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskExecutors;
@@ -29,6 +36,8 @@ import java.util.concurrent.TimeUnit;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import static com.ezzat.doctoruim.Control.Utils.Constants.CODE_SP;
+import static com.ezzat.doctoruim.Control.Utils.Constants.PLACEHOLDER_IMG;
+import static com.ezzat.doctoruim.Control.Utils.Constants.USER_TABLE;
 
 public class Utils {
 
@@ -124,8 +133,7 @@ public class Utils {
                             //FirebaseUser user = task.getResult().getUser();
 
                             SharedValues.saveValue(context, CODE_SP, credential.getSmsCode());
-
-                            Utils.launchActivity(context, HomeDoctorActivity.class, null);
+                            startUser(context);
                             // ...
                         } else {
                             // Sign in failed, display a message and update the UI
@@ -138,6 +146,46 @@ public class Utils {
                         }
                     }
                 });
+    }
+
+    public static void startUser(final Activity context) {
+        String phone = FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber();
+        DatabaseController.getElement(USER_TABLE, phone.substring(2, phone.length()), User.class, new onEvent() {
+            @Override
+            public void onStart(Object object) {
+                Utils.showLoading(context);
+            }
+
+            @Override
+            public void onProgress(Object object) {
+
+            }
+
+            @Override
+            public void onEnd(Object object) {
+                Utils.hideDialog();
+                User u = (User) object;
+                switch (u.getType()) {
+                    case Admin:
+                        Toast.makeText(context, "Admin User", Toast.LENGTH_SHORT).show();
+                        Utils.launchActivity(context, HomeActivity.class, null);
+                        context.finish();
+                        break;
+                    case Doctor:
+                        Toast.makeText(context, "Doctor User", Toast.LENGTH_SHORT).show();
+                        Utils.launchActivity(context, HomeDoctorActivity.class, null);
+                        context.finish();
+                        break;
+                    case Patient:
+                        Toast.makeText(context, "Patient User", Toast.LENGTH_SHORT).show();
+                        Utils.launchActivity(context, HomePatientActivity.class, null);
+                        context.finish();
+                        break;
+                    default:
+                        Toast.makeText(context, "Unknown User", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     public static String getStrings(List<String> days) {
@@ -156,6 +204,28 @@ public class Utils {
             res.add(x);
         }
         return res;
+    }
+
+    public static String getPhone() {
+        String phone = FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber();
+        return phone.substring(2, phone.length());
+    }
+
+    public static void setPhoto(Activity context, String url, ImageView photo) {
+        try {
+            Glide.with(context).load(url).placeholder(getImage(context, PLACEHOLDER_IMG)).into(photo);
+
+        } catch (Exception e) {
+            Glide.with(context).load(getImage(context, PLACEHOLDER_IMG)).into(photo);
+            e.printStackTrace();
+        }
+    }
+
+    private static int getImage(Activity activity, String imageName) {
+
+        int drawableResourceId = activity.getResources().getIdentifier(imageName, "drawable", activity.getPackageName());
+
+        return drawableResourceId;
     }
 
 }

@@ -18,6 +18,7 @@ import com.ezzat.doctoruim.Control.Utils.Utils
 import com.ezzat.doctoruim.Control.Utils.Utils.signInWithPhoneAuthCredential
 import com.ezzat.doctoruim.Control.onEvent
 import com.ezzat.doctoruim.R
+import com.ezzat.doctoruim.View.Doctor.HomeDoctorActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthProvider
 import me.relex.circleindicator.CircleIndicator
@@ -52,7 +53,7 @@ class MainActivity : Activity() {
     override fun onStart() {
         super.onStart()
         if (FirebaseAuth.getInstance().currentUser != null)
-            Utils.launchActivity(applicationContext, HomeDoctorActivity::class.java, null)
+            Utils.startUser(this)
     }
 
     override fun onDestroy() {

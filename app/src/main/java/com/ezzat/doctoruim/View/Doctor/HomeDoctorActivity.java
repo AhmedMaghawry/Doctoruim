@@ -1,4 +1,4 @@
-package com.ezzat.doctoruim.View;
+package com.ezzat.doctoruim.View.Doctor;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -8,16 +8,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.ezzat.doctoruim.Control.PagerAdapter;
 import com.ezzat.doctoruim.Control.PagerDoctorAdapter;
 import com.ezzat.doctoruim.Control.Utils.Utils;
 import com.ezzat.doctoruim.R;
+import com.ezzat.doctoruim.View.MainActivity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class HomeDoctorActivity extends AppCompatActivity {
 
     private ImageView userProf, logout;
+    private FloatingActionButton mail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,13 @@ public class HomeDoctorActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        mail = findViewById(R.id.mail);
+        mail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Utils.launchActivity(HomeDoctorActivity.this, SendMessageActivity.class, null);
+            }
+        });
 
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("Reservations"));

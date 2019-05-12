@@ -4,8 +4,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-import com.ezzat.doctoruim.View.DoctorsFragment;
-import com.ezzat.doctoruim.View.PatientsFragment;
+import com.ezzat.doctoruim.View.Admin.DoctorsFragment;
+import com.ezzat.doctoruim.View.Admin.PatientsFragment;
 
 public class PagerAdapter extends FragmentStatePagerAdapter {
 

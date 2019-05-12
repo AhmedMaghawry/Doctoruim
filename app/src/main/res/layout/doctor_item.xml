@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/card_bg"
+    android:orientation="horizontal"
+    android:layout_margin="10dp"
+    android:id="@+id/all">
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:id="@+id/image"
+        android:src="@drawable/placeholder"
+        android:scaleType="centerCrop"
+        android:layout_marginBottom="2dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="5dp"
+        android:gravity="center">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:text="Name : "
+                style="@style/text_title" />
+            <TextView
+                android:id="@+id/name"
+                style="@style/text_def" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:text="Phone : "
+                style="@style/text_title"/>
+            <TextView
+                style="@style/text_def"
+                android:id="@+id/phone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:text="Specializations : "
+                style="@style/text_title"/>
+            <TextView
+                style="@style/text_def"
+                android:id="@+id/spec" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:text="Address : "
+                style="@style/text_title"/>
+            <TextView
+                style="@style/text_def"
+                android:id="@+id/address" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:text="Rate : "
+                style="@style/text_title"/>
+            <RatingBar
+                android:id="@+id/rate"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:layout_marginLeft="20dp"
+                android:stepSize="0.5"
+                android:layout_gravity="center"
+                android:rating="2.5"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -4,11 +4,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-import com.ezzat.doctoruim.Model.Clinic;
-import com.ezzat.doctoruim.View.ClinicsFragment;
-import com.ezzat.doctoruim.View.DoctorsFragment;
-import com.ezzat.doctoruim.View.PatientsFragment;
-import com.ezzat.doctoruim.View.ReservationsFragment;
+import com.ezzat.doctoruim.View.Doctor.ClinicsFragment;
+import com.ezzat.doctoruim.View.Doctor.ReservationsFragment;
 
 public class PagerDoctorAdapter extends FragmentStatePagerAdapter {
 

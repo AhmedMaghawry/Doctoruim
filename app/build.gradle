@@ -40,6 +40,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:15.0.0'
     implementation 'com.google.firebase:firebase-storage:15.0.0'
     //implementation 'com.firebaseui:firebase-ui-database:1.2.0'
+    implementation 'de.hdodenhof:circleimageview:3.0.0'
     implementation 'com.baoyz.swipemenulistview:library:+'
     implementation 'me.relex:circleindicator:1.2.2@aar'
     implementation 'com.github.rahatarmanahmed:circularprogressview:+'
@@ -50,7 +51,7 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:+'
     implementation 'com.github.DavidProdinger:weekdays-selector:1.1.0'
 
-    
+
     annotationProcessor 'com.github.bumptech.glide:compiler:+'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.0'
