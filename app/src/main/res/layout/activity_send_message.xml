@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:fillViewport="true"
+        tools:context=".View.Doctor.SendMessageActivity">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="20dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/ic_message"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Report a Unusual Activity"
+            android:textColor="@color/gray"
+            android:gravity="center"
+            android:fontFamily="sans-serif-thin"
+            android:textSize="30sp"/>
+
+
+
+        <TextView
+            android:text="Report User Message"
+            style="@style/text_title"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="20dp"
+            android:textSize="25sp"/>
+
+        <EditText
+            android:id="@+id/message_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:maxLines="50"
+            android:textColor="@color/gray"
+            android:textSize="15sp"
+            tools:text="Enter Message Content"
+            android:inputType="textMultiLine"
+            android:lines="4"
+            android:textColorHint="@color/gray_white"
+            android:gravity="top|left"
+            android:scrollbars="vertical"/>
+
+        <TextView
+                android:text="Reported User ID"
+            style="@style/text_title"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="20dp"
+            android:textSize="25sp"
+                />
+
+        <EditText
+            android:id="@+id/reportedUserIdSended"
+            style="@style/edit_text"
+            android:hint="Enter User Phone "
+            android:inputType="phone"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Send"
+            android:background="@drawable/bg_button_3"
+            android:fontFamily="sans-serif-thin"
+            android:textColor="@color/white"
+            android:layout_gravity="bottom"
+            android:layout_margin="20dp"
+            android:id="@+id/send"/>
+    </LinearLayout>
+
+</ScrollView>
