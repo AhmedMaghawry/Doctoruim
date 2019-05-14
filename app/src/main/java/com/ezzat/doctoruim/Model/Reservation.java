@@ -18,11 +18,10 @@ public class Reservation implements Serializable {
 
     public Reservation(){}
 
-    public Reservation(String patientID, String doctorID, String date,String id) {
+    public Reservation(String patientID, String doctorID, String date) {
         this.patientID = patientID;
         this.doctorID = doctorID;
         this.date = date;
-        this.id = id;
         status = ReservationStatus.INPROGRESS;
     }
 
@@ -95,6 +94,7 @@ public class Reservation implements Serializable {
         try {
             DatabaseReference base = FirebaseDatabase.getInstance().getReference(RESERVATION_TABLE);
             DatabaseReference d = base.child(doctorID).push();
+            this.id = d.getKey();
             d.setValue(this);
         } catch (Exception e) {
             return false;

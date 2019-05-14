@@ -221,7 +221,7 @@ public class Utils {
         }
     }
 
-    private static int getImage(Activity activity, String imageName) {
+    public static int getImage(Activity activity, String imageName) {
 
         int drawableResourceId = activity.getResources().getIdentifier(imageName, "drawable", activity.getPackageName());
 

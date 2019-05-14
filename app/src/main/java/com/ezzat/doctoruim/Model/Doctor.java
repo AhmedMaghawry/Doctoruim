@@ -17,12 +17,14 @@ public class Doctor implements Serializable {
     private String phone;
     private List<String> sps;
     private String rate;
+    private int num;
 
     public Doctor (){}
 
     public Doctor(String phone, List<String> sps) {
         this.phone = phone;
-        this.rate = "2.5";
+        this.rate = "0";
+        this.num = 0;
         this.sps = sps;
     }
 
@@ -50,11 +52,20 @@ public class Doctor implements Serializable {
         this.sps = sps;
     }
 
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
+    }
+
     public Map<String, Object> toMap() {
         Map<String, Object> map = new HashMap<>();
         map.put("phone", this.phone);
         map.put("rate", this.rate);
         map.put("sps", this.sps);
+        map.put("num", this.num);
         return map;
     }
 

@@ -18,6 +18,7 @@ import com.ezzat.doctoruim.Model.Doctor;
 import com.ezzat.doctoruim.Model.User;
 import com.ezzat.doctoruim.Model.UserType;
 import com.ezzat.doctoruim.R;
+import com.ezzat.doctoruim.View.Admin.RequestActivity;
 import com.ezzat.doctoruim.View.MainActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -52,6 +53,8 @@ import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import static com.ezzat.doctoruim.Control.Utils.Constants.ARG_REQ;
+import static com.ezzat.doctoruim.Control.Utils.Constants.ARG_USR;
 import static com.ezzat.doctoruim.Control.Utils.Constants.USER_TABLE;
 
 public class HomePatientActivity extends AppCompatActivity
@@ -253,6 +256,8 @@ public class HomePatientActivity extends AppCompatActivity
 
     @Override
     public void onDoctorSelected(User user) {
-        Toast.makeText(this, "Doctor " + user.getName() + " is Selected", Toast.LENGTH_SHORT).show();
+        Bundle args = new Bundle();
+        args.putSerializable(ARG_USR, user);
+        Utils.launchActivity(HomePatientActivity.this, DoctorDetailsActivity.class, args);
     }
 }

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fillViewport="true"
+    tools:context=".View.Doctor.DoctorProfileActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="180dp">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:src="@drawable/bg_doc"
+                android:alpha="0.3"
+                android:scaleType="centerCrop"/>
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:id="@+id/image"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop"
+                android:clickable="true"/>
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="5dp"
+                android:id="@+id/name">
+
+                <TextView
+                    android:text="Name : "
+                    style="@style/text_title" />
+                <TextView
+                    style="@style/text_def"
+                    android:id="@+id/nameTV"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="5dp"
+                android:id="@+id/spec">
+
+                <TextView
+                    android:text="Specifications : "
+                    style="@style/text_title" />
+                <TextView
+                    style="@style/text_def"
+                    android:id="@+id/specTV"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="5dp"
+                android:id="@+id/phone">
+
+                <TextView
+                    android:text="Phone : "
+                    style="@style/text_title" />
+                <TextView
+                    style="@style/text_def"
+                    android:id="@+id/phoneTV"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="5dp"
+                android:id="@+id/address">
+
+                <TextView
+                    android:text="Address : "
+                    style="@style/text_title" />
+                <TextView
+                    style="@style/text_def"
+                    android:lines="2"
+                    android:id="@+id/addressTV"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="5dp"
+                android:gravity="center|left">
+                <TextView
+                    android:text="Rate : "
+                    style="@style/text_title"/>
+                <RatingBar
+                    android:id="@+id/rate"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:numStars="5"
+                    android:layout_marginLeft="20dp"
+                    android:stepSize="0.5"
+                    android:layout_gravity="center"
+                    android:rating="2.5"/>
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="right"
+                    android:layout_marginLeft="50dp"
+                    android:id="@+id/ratebt"
+                    android:src="@android:drawable/btn_star_big_on"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Reserve an Appointment"
+            android:background="@drawable/bg_button_3"
+            android:fontFamily="sans-serif-thin"
+            android:textColor="@color/white"
+            android:layout_gravity="bottom"
+            android:layout_margin="20dp"
+            android:id="@+id/res"/>
+    </LinearLayout>
+
+</ScrollView>

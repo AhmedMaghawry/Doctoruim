@@ -15,9 +15,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
-        <activity android:name=".View.Patient.SettingsActivity"
-            android:label="Settings"
+        <activity android:name=".View.Patient.DoctorDetailsActivity"
+            android:label="Doctor Details"
             android:parentActivityName=".View.Patient.HomePatientActivity"/>
+        <activity
+            android:name=".View.Patient.SettingsActivity"
+            android:label="Settings"
+            android:parentActivityName=".View.Patient.HomePatientActivity" />
         <activity
             android:name=".View.Patient.PatientProfileActivity"
             android:label="Profile"

@@ -17,6 +17,7 @@ public interface Constants {
     String CODE_SP = "code";
     String ARG_REQS = "requests";
     String ARG_REQ = "request";
+    String ARG_USR = "user";
     String PLACEHOLDER_IMG = "placeholder";
 
     String ARG_MESSES = "messages";

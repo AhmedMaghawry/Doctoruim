@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        style="@style/text_title"
+        android:text="Select a day : "
+        android:textSize="27sp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="10dp"/>
+
+    <TextView
+        style="@style/text_def"
+        tools:text="asdasda"
+        android:layout_marginLeft="50dp"
+        android:textSize="15sp"
+        android:id="@+id/select_day"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pick a day"
+        android:background="@drawable/bg_button_3"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="sans-serif-thin"
+        android:textColor="@color/white"
+        android:id="@+id/day"/>
+
+    <TextView
+        style="@style/text_title"
+        android:text="Select a time : "
+        android:textSize="27sp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="10dp"/>
+    <TextView
+        style="@style/text_def"
+        tools:text="asdasda"
+        android:layout_marginLeft="50dp"
+        android:textSize="15sp"
+        android:id="@+id/select_time"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pick a time"
+        android:background="@drawable/bg_button_3"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="sans-serif-thin"
+        android:textColor="@color/white"
+        android:id="@+id/time"/>
+
+</LinearLayout>
