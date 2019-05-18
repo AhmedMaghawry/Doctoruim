@@ -46,8 +46,6 @@ public class PatientProfileActivity extends AppCompatActivity {
     private Button save;
     public static final int PICK_IMAGE = 3;
     private User currentUser = null;
-    private Doctor currentDoctor = null;
-    private Uri selectedImageUri;
     private StorageReference storageRef;
     private Uri uriProfileImage;      // to save  the image  type
     private String profileImageUrl;  // UrL of the  photo
@@ -105,7 +103,6 @@ public class PatientProfileActivity extends AppCompatActivity {
                     currentUser.setName(String.valueOf(name.getText()));
                     currentUser.setPhone(String.valueOf(phone.getText()));
                     currentUser.updateUser();
-                    currentDoctor.updateDoctor();
                     onBackPressed();
                 }
 
@@ -130,7 +127,6 @@ public class PatientProfileActivity extends AppCompatActivity {
         photo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO:Confirm
                 viewImageChooser(photo);
             }
         });

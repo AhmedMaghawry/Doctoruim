@@ -29,7 +29,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/subtitle"
+        android:text="Easy Reservation for Doctors"
         android:layout_gravity="bottom"
         android:gravity="center"
         android:fontFamily="sans-serif-thin"

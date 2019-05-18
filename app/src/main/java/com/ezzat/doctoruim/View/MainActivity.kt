@@ -4,6 +4,7 @@ import android.app.Activity
 import android.os.Bundle
 import androidx.viewpager.widget.ViewPager
 import android.text.TextUtils
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -87,7 +88,8 @@ class MainActivity : Activity() {
 
     private fun showLoginDialog() {
         MaterialDialog(this).show {
-            title(R.string.login)
+            noAutoDismiss()
+
             customView(R.layout.view_login, scrollable = true)
             positiveButton(R.string.login) { dialog ->
                 val email : EditText = dialog.getCustomView().findViewById(R.id.email)!!
@@ -109,23 +111,32 @@ class MainActivity : Activity() {
                 }
 
                 var good = true
+                var focusView: View? = null
+                val emailT = email.text.toString()
+                val passwordT = password.text.toString()
 
-                if (email.toString().equals("")) {
+                if (TextUtils.isEmpty(emailT)) {
                     email.setError("please add Phone number")
+                    focusView = email
                     good = false
                 }
 
-                if (password.toString().equals("")) {
+                if (TextUtils.isEmpty(passwordT)) {
                     password.setError("please add password")
+                    focusView = password
                     good = false
                 }
 
                 if (good) {
                     var loginTask = UserLoginTask(self, event)
                     loginTask.execute(email.text.toString(), password.text.toString())
+                } else {
+                    focusView!!.requestFocus()
                 }
             }
-            negativeButton(android.R.string.cancel)
+            negativeButton(android.R.string.cancel) {
+                dismiss()
+            }
         }
     }
 }

@@ -74,15 +74,28 @@ public class SignUpActivity extends AppCompatActivity {
         boolean cancel = false;
         View focusView = null;
 
+
+        if (TextUtils.isEmpty(password)) {
+            passwordView.setError("Password is required");
+            focusView = passwordView;
+            cancel = true;
+        }
+
+        if (TextUtils.isEmpty(cPassword)) {
+            cPasswordView.setError("password is required");
+            focusView = cPasswordView;
+            cancel = true;
+        }
+
         // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+        if (!isPasswordValid(password)) {
             passwordView.setError(getString(R.string.error_invalid_password));
             focusView = passwordView;
             cancel = true;
         }
 
         // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(cPassword) && !password.equals(cPassword)) {
+        if (!password.equals(cPassword)) {
             cPasswordView.setError("Passwords are different");
             focusView = cPasswordView;
             cancel = true;
